@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2023 a las 15:53:45
+-- Tiempo de generación: 31-05-2023 a las 16:25:15
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -32,8 +32,16 @@ CREATE TABLE `cliente` (
   `apellido` varchar(30) NOT NULL,
   `nombre` varchar(30) NOT NULL,
   `domicilio` varchar(50) NOT NULL,
-  `telefono` int(11) NOT NULL
+  `telefono` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`id_cliente`, `apellido`, `nombre`, `domicilio`, `telefono`) VALUES
+(1, 'Perez', 'Juan', 'San Juan 42', 2664304567),
+(2, 'Gomez', 'Maria', 'San Martin 300', 2664308976);
 
 -- --------------------------------------------------------
 
@@ -46,6 +54,13 @@ CREATE TABLE `compra` (
   `id_proveedor` int(11) NOT NULL,
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `compra`
+--
+
+INSERT INTO `compra` (`id_compra`, `id_proveedor`, `fecha`) VALUES
+(1, 1, '2023-05-31');
 
 -- --------------------------------------------------------
 
@@ -61,6 +76,13 @@ CREATE TABLE `detallecompra` (
   `id_producto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `detallecompra`
+--
+
+INSERT INTO `detallecompra` (`id_detalle`, `cantidad`, `precioCosto`, `id_compra`, `id_producto`) VALUES
+(1, 5, 400000, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +96,13 @@ CREATE TABLE `detalleventa` (
   `id_venta` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `detalleventa`
+--
+
+INSERT INTO `detalleventa` (`id_detalleventa`, `cantidad`, `precioVenta`, `id_venta`, `id_producto`) VALUES
+(1, 1, 75000, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -89,6 +118,14 @@ CREATE TABLE `producto` (
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `descripcion`, `precioActual`, `stock`, `estado`) VALUES
+(1, 'Heladera', 80000, 3, 1),
+(2, 'Cocina', 75000, 5, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -99,8 +136,16 @@ CREATE TABLE `proveedor` (
   `id_proveedor` int(11) NOT NULL,
   `razonSocial` varchar(30) NOT NULL,
   `domicilio` varchar(50) NOT NULL,
-  `telefono` int(10) NOT NULL
+  `telefono` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id_proveedor`, `razonSocial`, `domicilio`, `telefono`) VALUES
+(1, 'Electrone', 'Pedernera 830', 112940523),
+(2, 'Diarco', 'Rivadavia 840', 2664455001);
 
 -- --------------------------------------------------------
 
@@ -113,6 +158,13 @@ CREATE TABLE `venta` (
   `fecha` date NOT NULL,
   `id_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`id_venta`, `fecha`, `id_cliente`) VALUES
+(1, '2023-05-31', 1);
 
 --
 -- Índices para tablas volcadas
@@ -174,43 +226,43 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `compra`
 --
 ALTER TABLE `compra`
-  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `detallecompra`
 --
 ALTER TABLE `detallecompra`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `detalleventa`
 --
 ALTER TABLE `detalleventa`
-  MODIFY `id_detalleventa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detalleventa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
