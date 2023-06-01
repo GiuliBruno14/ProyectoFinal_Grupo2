@@ -4,6 +4,9 @@
  */
 package trabajofinalgrupo2;
 
+import Controladores.ClientesData;
+import Modelo.Cliente;
+
 /**
  *
  * @author Giulietta
@@ -14,7 +17,14 @@ public class TrabajoFinalGrupo2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+    Cliente cl2 =new Cliente("Bruno","Giulietta", "sucre 321", 2664256466);
+    Cliente cl3 =new Cliente(3,"Bruno","Giulietta", "sucre 32", 0);
+    ClientesData cd =new ClientesData();
+//    cd.agregarCliente(cl); agregar cliente
+    cd.editarCliente(cl3);
+    
+    
+    
     }
     
 }

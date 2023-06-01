@@ -3,8 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Giulietta/Desktop/Tecnicatura/Laboratorio%20de%20Programacion%20I/TrabajoFinalGrupo2/src/trabajofinalgrupo2/TrabajoFinalGrupo2.java</file>
-            <file>file:/C:/Users/Giulietta/Desktop/Tecnicatura/Laboratorio%20de%20Programacion%20I/TrabajoFinalGrupo2/src/Controladores/Conexion.java</file>
+            <file>file:/C:/Users/Nicolas%20Araujo/Desktop/ULP2023/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Modelo/Compra.java</file>
+            <file>file:/C:/Users/Nicolas%20Araujo/Desktop/ULP2023/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Modelo/Cliente.java</file>
+            <file>file:/C:/Users/Nicolas%20Araujo/Desktop/ULP2023/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Controladores/ClientesData.java</file>
+            <file>file:/C:/Users/Nicolas%20Araujo/Desktop/ULP2023/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Modelo/Venta.java</file>
+            <file>file:/C:/Users/Nicolas%20Araujo/Desktop/ULP2023/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Controladores/Conexion.java</file>
+            <file>file:/C:/Users/Nicolas%20Araujo/Desktop/ULP2023/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Modelo/Producto.java</file>
+            <file>file:/C:/Users/Nicolas%20Araujo/Desktop/ULP2023/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Modelo/Proveedor.java</file>
+            <file>file:/C:/Users/Nicolas%20Araujo/Desktop/ULP2023/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Modelo/DetalleCompra.java</file>
+            <file>file:/C:/Users/Nicolas%20Araujo/Desktop/ULP2023/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Modelo/Detalle_Venta.java</file>
+            <file>file:/C:/Users/Nicolas%20Araujo/Desktop/ULP2023/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/trabajofinalgrupo2/TrabajoFinalGrupo2.java</file>
         </group>
     </open-files>
 </project-private>

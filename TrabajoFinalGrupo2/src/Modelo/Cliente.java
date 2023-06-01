@@ -11,9 +11,9 @@ public class Cliente {
     private String apellido;
     private String nombre;
     private String domicilio;
-    private long telefono;
+    private Long telefono;
 
-    public Cliente(String apellido, String nombre, String domicilio, long telefono) {
+    public Cliente(String apellido, String nombre, String domicilio, Long telefono) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.domicilio = domicilio;
@@ -23,7 +23,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String apellido, String nombre, String domicilio, long telefono) {
+    public Cliente(int idCliente, String apellido, String nombre, String domicilio, Long telefono) {
         this.idCliente = idCliente;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -33,6 +33,10 @@ public class Cliente {
 
     public int getIdCliente() {
         return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
   
@@ -61,11 +65,11 @@ public class Cliente {
         this.domicilio = domicilio;
     }
 
-    public long getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(long telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 
