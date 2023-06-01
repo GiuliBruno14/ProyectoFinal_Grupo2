@@ -8,10 +8,14 @@ public class Proveedor {
     private int idProveedor;
     private String razonSocial;
     private String domicilio;
-    private long telefono;
+    private String telefono;
 
     public int getIdProveedor() {
         return idProveedor;
+    }
+
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
 
@@ -31,21 +35,21 @@ public class Proveedor {
         this.domicilio = domicilio;
     }
 
-    public long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
-    public Proveedor(String razonSocial, String domicilio, long telefono) {
+    public Proveedor(String razonSocial, String domicilio, String telefono) {
         this.razonSocial = razonSocial;
         this.domicilio = domicilio;
         this.telefono = telefono;
     }
 
-    public Proveedor(int idProveedor, String razonSocial, String domicilio, long telefono) {
+    public Proveedor(int idProveedor, String razonSocial, String domicilio, String telefono) {
         this.idProveedor = idProveedor;
         this.razonSocial = razonSocial;
         this.domicilio = domicilio;

@@ -2,7 +2,9 @@
 package trabajofinalgrupo2;
 
 import Controladores.ClientesData;
+import Controladores.ProveedorData;
 import Modelo.Cliente;
+import Modelo.Proveedor;
 
 /**
  *
@@ -16,8 +18,13 @@ public class TrabajoFinalGrupo2 {
     ClientesData cd =new ClientesData();
     //cd.agregarCliente(cl); //agregar cliente
     //cd.editarCliente(cl2); //actualizar cliente
-    cd.eliminarCliente(cl2);//eliminar cliente
-    
+//    cd.eliminarCliente(cl2);//eliminar cliente
+    Proveedor p1=new Proveedor("Compuserve","Ayacucho 321","2665321546");
+    Proveedor p2=new Proveedor(3,"Compuserve","Ayacucho 777","2665321546");  
+    ProveedorData pd=new ProveedorData();
+    pd.editarProveedor(p2);
+//    pd.agregarProveedor(p1);
+    pd.eliminarProveedor(p2);
     
     
     }
