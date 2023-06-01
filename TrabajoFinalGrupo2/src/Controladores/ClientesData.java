@@ -30,7 +30,7 @@ public class ClientesData {
             ps.setString(1, cliente.getApellido());
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getDomicilio());
-            ps.setLong(4, cliente.getTelefono());
+            ps.setLong(4, Long.parseLong(cliente.getTelefono()));
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -52,7 +52,7 @@ public class ClientesData {
             ps.setString(1, cliente.getApellido());
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getDomicilio());
-            ps.setLong(4, cliente.getTelefono());
+            ps.setLong(4, Long.parseLong(cliente.getTelefono()));
             ps.setInt(5, cliente.getIdCliente());
             ps.executeUpdate();
             ps.close();
@@ -60,7 +60,19 @@ public class ClientesData {
         } catch (SQLException ex) {
             Logger.getLogger(ClientesData.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+    }
+    
+    public void eliminarCliente(Cliente cliente){
+        String sql = "DELETE FROM cliente WHERE id_cliente=?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, cliente.getIdCliente());
+            ps.executeUpdate();
+            ps.close();
+            JOptionPane.showMessageDialog(null,"Cliente eliminado correctamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientesData.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

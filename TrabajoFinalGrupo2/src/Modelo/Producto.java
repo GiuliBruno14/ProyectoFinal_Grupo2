@@ -10,7 +10,7 @@ public class Producto {
     private int idProducto;
     private String descripcion;
     private float precioActual;
-    private int stock;
+    private int stock = 0;
     private boolean estado;
 
     public Producto(String descripcion, float precioActual, int stock, boolean estado) {

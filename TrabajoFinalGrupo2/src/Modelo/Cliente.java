@@ -11,9 +11,10 @@ public class Cliente {
     private String apellido;
     private String nombre;
     private String domicilio;
-    private Long telefono;
+    private String telefono;
 
-    public Cliente(String apellido, String nombre, String domicilio, Long telefono) {
+    public Cliente(int idCliente, String apellido, String nombre, String domicilio, String telefono) {
+        this.idCliente = idCliente;
         this.apellido = apellido;
         this.nombre = nombre;
         this.domicilio = domicilio;
@@ -23,8 +24,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String apellido, String nombre, String domicilio, Long telefono) {
-        this.idCliente = idCliente;
+    public Cliente(String apellido, String nombre, String domicilio, String telefono) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.domicilio = domicilio;
@@ -38,8 +38,6 @@ public class Cliente {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
-
-  
 
     public String getApellido() {
         return apellido;
@@ -65,14 +63,15 @@ public class Cliente {
         this.domicilio = domicilio;
     }
 
-    public Long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
+   
     @Override
     public String toString() {
         return "Cliente{" + "idCliente=" + idCliente + ", apellido=" + apellido + ", nombre=" + nombre + ", domicilio=" + domicilio + ", telefono=" + telefono + '}';
