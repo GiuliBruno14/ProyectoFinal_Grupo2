@@ -110,7 +110,6 @@ public class ClientesData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 cliente = new Cliente();
-                cliente = new Cliente();
                 cliente.setIdCliente(rs.getInt("id_cliente"));
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));

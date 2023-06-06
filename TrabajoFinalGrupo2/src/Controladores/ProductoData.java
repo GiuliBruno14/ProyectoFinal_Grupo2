@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -92,6 +93,33 @@ public class ProductoData {
             JOptionPane.showMessageDialog(null, "No se pudo buscar el producto" + ex);
         }
         return producto;
+    }
+    
+    public ArrayList<Producto> listarProductos() {
+        ArrayList<Producto> productos = new ArrayList<>();
+        Producto producto;
+        String sql = "SELECT * FROM producto;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                producto = new Producto();
+                producto.setIdProducto(rs.getInt("id_producto"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecioActual(rs.getFloat("precioActual"));
+                producto.setStock(rs.getInt("stock"));
+                producto.setEstado(rs.getBoolean("estado"));
+                productos.add(producto);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los productos" + ex);
+        }
+        if (productos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "la base de datos se encuentra vacia");
+        }
+    return productos;
     }
 
 }

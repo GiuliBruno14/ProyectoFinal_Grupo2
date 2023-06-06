@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -53,7 +54,6 @@ public class CompraData {
             ps.close();
             JOptionPane.showMessageDialog(null, "Compra modificada correctamente");
         } catch (SQLException ex) {
-
             JOptionPane.showMessageDialog(null, "No se pudo modificar la compra" + ex);
         }
 
@@ -94,5 +94,31 @@ public class CompraData {
            JOptionPane.showMessageDialog(null, "No se pudo buscar la compra"+ex);
         }
         return compra;
+    }
+    
+    public ArrayList<Compra> listarCompras() {
+        ArrayList<Compra> compras = new ArrayList<>();
+        ProveedorData pd = new ProveedorData();
+        Compra compra;
+        String sql = "SELECT * FROM compra;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                compra = new Compra();
+                compra.setIdCompra(rs.getInt("id_compra"));
+                compra.setProveedor(pd.buscarProveedor(rs.getInt("id_proveedor")));
+                compra.setFecha(rs.getDate("fecha").toLocalDate());
+                compras.add(compra);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener la lista de compra" + ex);
+        }
+        if (compras.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "la base de datos se encuentra vacia");
+        }
+    return compras;
     }
 }

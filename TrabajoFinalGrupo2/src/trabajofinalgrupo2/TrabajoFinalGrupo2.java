@@ -58,9 +58,26 @@ public class TrabajoFinalGrupo2 {
         for (Cliente c : clientes) {
             System.out.println(c);
         }
-ArrayList <Proveedor> proveedores=new ArrayList<>();
+        ArrayList <Proveedor> proveedores=new ArrayList<>();
         proveedores =pd.listarProveedores();
         for(Proveedor p: proveedores){
             System.out.println(p);
-    }
+        }
+        ArrayList <Producto> productos=new ArrayList<>();
+        productos =prodData.listarProductos();
+        for(Producto p: productos){
+            System.out.println(p);
+        }
+        ArrayList <Compra> compras=new ArrayList<>();
+        compras =comd.listarCompras();
+        for(Compra c: compras){
+            System.out.println(c);
+        }
+        ArrayList <Venta> ventas=new ArrayList<>();
+        ventas =vd.listarVentas();
+        for(Venta v: ventas){
+            System.out.println(v);
+        }
+        
+        
 }}

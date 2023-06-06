@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -69,7 +70,7 @@ public class VentaData {
     public Venta buscarVenta(int id) {
         Venta venta = null;
         String sql = "SELECT * FROM venta WHERE id_venta=?";
-      ClientesData cd = new ClientesData();
+        ClientesData cd = new ClientesData();
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id);
@@ -87,4 +88,30 @@ public class VentaData {
         }
         return venta;
     }  
+    
+    public ArrayList<Venta> listarVentas() {
+        ArrayList<Venta> ventas = new ArrayList<>();
+        ClientesData cd = new ClientesData();
+        Venta venta;
+        String sql = "SELECT * FROM venta;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                venta = new Venta();
+                venta.setIdVenta(rs.getInt("id_venta"));
+                venta.setCliente(cd.buscarCliente(rs.getInt("id_cliente")));
+                venta.setFecha(rs.getDate("fecha").toLocalDate());
+                ventas.add(venta);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener la lista de ventas" + ex);
+        }
+        if (ventas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "la base de datos se encuentra vacia");
+        }
+    return ventas;
+    }
 }

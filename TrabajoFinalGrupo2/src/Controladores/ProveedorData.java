@@ -104,7 +104,6 @@ public class ProveedorData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 proveedor = new Proveedor();
-                proveedor = new Proveedor();
                 proveedor.setIdProveedor(rs.getInt("id_proveedor"));
                 proveedor.setRazonSocial(rs.getString("razonSocial"));
                 proveedor.setDomicilio(rs.getString("domicilio"));
