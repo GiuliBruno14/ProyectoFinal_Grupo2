@@ -69,4 +69,27 @@ public class ProveedorData {
             JOptionPane.showMessageDialog(null,"No se pudo eliminar al proveedor");
         }
     }
+    public Proveedor buscarProveedor(int id){
+    Proveedor proveedor =null;
+    String sql= "SELECT * FROM proveedor WHERE id_proveedor=?;";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                proveedor=new Proveedor();
+                proveedor.setIdProveedor(id);
+                proveedor.setRazonSocial(rs.getString("razonSocial"));
+                proveedor.setDomicilio(rs.getString("domicilio"));
+                proveedor.setTelefono(Integer.toString(rs.getInt("telefono")));
+            }else{
+            JOptionPane.showMessageDialog(null,"Proveedor inexistente");
+            }
+
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null,"No se pudo buscar proveedor"+ex);
+        }
+    return proveedor;
+    }
 }
