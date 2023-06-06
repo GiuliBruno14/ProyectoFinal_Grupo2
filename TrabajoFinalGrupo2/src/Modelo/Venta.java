@@ -31,7 +31,9 @@ public class Venta {
         return idVenta;
     }
 
-   
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
+    }
 
     public LocalDate getFecha() {
         return fecha;

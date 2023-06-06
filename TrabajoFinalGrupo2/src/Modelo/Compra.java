@@ -29,6 +29,10 @@ private LocalDate fecha;
         return idCompra;
     }
 
+    public void setIdCompra(int idCompra) {
+        this.idCompra = idCompra;
+    }
+
     public Proveedor getProveedor() {
         return proveedor;
     }

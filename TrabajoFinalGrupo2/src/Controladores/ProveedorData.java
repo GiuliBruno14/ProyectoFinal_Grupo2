@@ -29,6 +29,7 @@ public class ProveedorData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 proveedor.setIdProveedor(rs.getInt(1));
+                JOptionPane.showMessageDialog(null,"Proveedor guardado correctamente");
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo guardar el proveedor");
             }
@@ -51,7 +52,7 @@ public class ProveedorData {
             JOptionPane.showMessageDialog(null,"Proveedor actualizado correctamente");
 
         } catch (SQLException ex) {
-            Logger.getLogger(ProveedorData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"No se pudo actualizar proveedor");
         }
 
     }
@@ -65,7 +66,7 @@ public class ProveedorData {
             ps.close();
             JOptionPane.showMessageDialog(null,"Proveedor eliminado correctamente");
         } catch (SQLException ex) {
-            Logger.getLogger(ClientesData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"No se pudo eliminar al proveedor");
         }
     }
 }
