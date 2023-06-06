@@ -65,5 +65,26 @@ public class VentaData {
             JOptionPane.showMessageDialog(null,"No se pudo eliminar la venta");
         }
     }
-    
+  
+    public Venta buscarVenta(int id) {
+        Venta venta = null;
+        String sql = "SELECT * FROM venta WHERE id_venta=?";
+      ClientesData cd = new ClientesData();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                venta = new Venta();
+                venta.setIdVenta(id);
+                venta.setCliente(cd.buscarCliente(rs.getInt("id_cliente")));
+                venta.setFecha(rs.getDate("fecha").toLocalDate());
+            } else {
+                JOptionPane.showMessageDialog(null, "Venta inexistente");
+            }
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "No se pudo buscar la venta"+ex);
+        }
+        return venta;
+    }  
 }

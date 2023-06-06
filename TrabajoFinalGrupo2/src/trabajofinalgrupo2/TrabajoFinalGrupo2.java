@@ -11,6 +11,7 @@ import Modelo.Producto;
 import Modelo.Proveedor;
 import Modelo.Venta;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -51,5 +52,15 @@ public class TrabajoFinalGrupo2 {
 //    no funciona!!
         System.out.println(pd.buscarProveedor(1));
         System.out.println(comd.buscarCompra(1));
+        System.out.println(vd.buscarVenta(1));
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        clientes = cd.listarClientes();
+        for (Cliente c : clientes) {
+            System.out.println(c);
+        }
+ArrayList <Proveedor> proveedores=new ArrayList<>();
+        proveedores =pd.listarProveedores();
+        for(Proveedor p: proveedores){
+            System.out.println(p);
     }
-}
+}}
