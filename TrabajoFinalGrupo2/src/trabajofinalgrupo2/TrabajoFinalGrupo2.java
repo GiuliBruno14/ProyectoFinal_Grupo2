@@ -2,11 +2,13 @@ package trabajofinalgrupo2;
 
 import Controladores.ClientesData;
 import Controladores.CompraData;
+import Controladores.DetalleVentaData;
 import Controladores.ProductoData;
 import Controladores.ProveedorData;
 import Controladores.VentaData;
 import Modelo.Cliente;
 import Modelo.Compra;
+import Modelo.Detalle_Venta;
 import Modelo.Producto;
 import Modelo.Proveedor;
 import Modelo.Venta;
@@ -38,7 +40,7 @@ public class TrabajoFinalGrupo2 {
 //    prodData.agregarProducto(prod1);
 //  prodData.editarProducto(prod2);
 //   prodData.eliminarProducto(prod2);
-        Venta v1 = new Venta(LocalDate.of(2023, 6, 6), cl);
+        Venta v1 = new Venta(LocalDate.of(2023, 6, 7), cl);
         Venta v2 = new Venta(2, LocalDate.of(2023, 6, 5), cl);
         VentaData vd = new VentaData();
         //vd.realizarVenta(v1);
@@ -50,34 +52,50 @@ public class TrabajoFinalGrupo2 {
 //        Compra com2 =new Compra(1,p1,LocalDate.of(2023, 4, 12));
 //        comd.editarCompra(com2);
 //    no funciona!!
-        System.out.println(pd.buscarProveedor(1));
-        System.out.println(comd.buscarCompra(1));
-        System.out.println(vd.buscarVenta(1));
-        ArrayList<Cliente> clientes = new ArrayList<>();
-        clientes = cd.listarClientes();
-        for (Cliente c : clientes) {
-            System.out.println(c);
-        }
-        ArrayList <Proveedor> proveedores=new ArrayList<>();
-        proveedores =pd.listarProveedores();
-        for(Proveedor p: proveedores){
-            System.out.println(p);
-        }
-        ArrayList <Producto> productos=new ArrayList<>();
-        productos =prodData.listarProductos();
-        for(Producto p: productos){
-            System.out.println(p);
-        }
-        ArrayList <Compra> compras=new ArrayList<>();
-        compras =comd.listarCompras();
-        for(Compra c: compras){
-            System.out.println(c);
-        }
-        ArrayList <Venta> ventas=new ArrayList<>();
-        ventas =vd.listarVentas();
-        for(Venta v: ventas){
-            System.out.println(v);
-        }
+//        System.out.println(pd.buscarProveedor(1));
+//        System.out.println(comd.buscarCompra(1));
+//        System.out.println(vd.buscarVenta(1));
+//        ArrayList<Cliente> clientes = new ArrayList<>();
+//        clientes = cd.listarClientes();
+//        for (Cliente c : clientes) {
+//            System.out.println(c);
+//        }
+//        ArrayList <Proveedor> proveedores=new ArrayList<>();
+//        proveedores =pd.listarProveedores();
+//        for(Proveedor p: proveedores){
+//            System.out.println(p);
+//        }
+//        ArrayList <Producto> productos=new ArrayList<>();
+//        productos =prodData.listarProductos();
+//        for(Producto p: productos){
+//            System.out.println(p);
+//        }
+//        ArrayList <Compra> compras=new ArrayList<>();
+//        compras =comd.listarCompras();
+//        for(Compra c: compras){
+//            System.out.println(c);
+//        }
+//        ArrayList <Venta> ventas=new ArrayList<>();
+//        ventas =vd.listarVentas();
+//        for(Venta v: ventas){
+//            System.out.println(v);
+//        }
+        DetalleVentaData dvd = new DetalleVentaData();
+        Venta ven = new Venta();
+        ven = vd.buscarVenta(1);
+        Producto produ = new Producto();
+        produ = prodData.buscarProducto(1);
+        Detalle_Venta dv = new Detalle_Venta(1,80000,produ);
+//       dvd.agregarDetalleVenta(dv);
+        //dvd.eliminarDetalleVenta(dv);
+      //  System.out.println(dvd.buscarDetalleVenta(1));
+//        ArrayList <Detalle_Venta> detalleVtas =new ArrayList<>();
+//        detalleVtas =dvd.listarDetalleVentas();
+//        for(Detalle_Venta v: detalleVtas){
+//           System.out.println(v);
+//       }
+        Venta ventnueva = new Venta(LocalDate.of(2023, 6, 7), cl2);
+        vd.realizarVenta(ventnueva, dv);
         
-        
-}}
+}
+}

@@ -13,7 +13,7 @@ public class Detalle_Venta {
     private Venta venta;
     private Producto producto;
 
-    public Detalle_Venta(int cantidad, float precioVenta, Venta venta, Producto producto) {
+    public Detalle_Venta(int cantidad, float precioVenta,Producto producto) {
         this.cantidad = cantidad;
         this.precioVenta = precioVenta;
         this.venta = venta;
@@ -27,7 +27,9 @@ public class Detalle_Venta {
         this.venta = venta;
         this.producto = producto;
     }
-
+     public Detalle_Venta() {
+    }
+    
     public int getIdDetalleVenta() {
         return idDetalleVenta;
     }
@@ -66,9 +68,6 @@ public class Detalle_Venta {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
-    }
-
-    public Detalle_Venta() {
     }
 
     @Override
