@@ -32,7 +32,9 @@ public class Detalle_Venta {
         return idDetalleVenta;
     }
 
-   
+    public void setIdDetalleVenta(int idDetalleVenta) {
+        this.idDetalleVenta = idDetalleVenta;
+    }
 
     public int getCantidad() {
         return cantidad;

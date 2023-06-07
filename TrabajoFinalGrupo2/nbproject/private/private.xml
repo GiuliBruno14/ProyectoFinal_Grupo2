@@ -3,7 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/VIB/Documents/NetBeansProjects/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/vistas/Menu.java</file>
+=======
+            <file>file:/C:/Users/giuli/Desktop/Proyecto%20Final%20Lab/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Controladores/ProveedorData.java</file>
+            <file>file:/C:/Users/giuli/Desktop/Proyecto%20Final%20Lab/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/trabajofinalgrupo2/TrabajoFinalGrupo2.java</file>
+            <file>file:/C:/Users/giuli/Desktop/Proyecto%20Final%20Lab/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Modelo/Cliente.java</file>
+            <file>file:/C:/Users/giuli/Desktop/Proyecto%20Final%20Lab/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Modelo/Producto.java</file>
+            <file>file:/C:/Users/giuli/Desktop/Proyecto%20Final%20Lab/ProyectoFinal_Grupo2/TrabajoFinalGrupo2/src/Controladores/ClientesData.java</file>
+>>>>>>> 5445f06d67a0387b961f9df46c2cb182c4837213
         </group>
     </open-files>
 </project-private>

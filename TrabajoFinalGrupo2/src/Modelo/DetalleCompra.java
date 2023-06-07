@@ -33,6 +33,10 @@ private Producto producto;
         return idDetalle;
     }
 
+    public void setIdDetalle(int idDetalle) {
+        this.idDetalle = idDetalle;
+    }
+
 
     public int getCantidad() {
         return cantidad;
