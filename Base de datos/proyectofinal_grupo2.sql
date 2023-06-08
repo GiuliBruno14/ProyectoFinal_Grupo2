@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2023 a las 16:25:15
+-- Tiempo de generación: 08-06-2023 a las 16:09:33
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -94,15 +94,16 @@ CREATE TABLE `detalleventa` (
   `cantidad` int(11) NOT NULL,
   `precioVenta` float NOT NULL,
   `id_venta` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL
+  `id_producto` int(11) NOT NULL,
+  `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `detalleventa`
 --
 
-INSERT INTO `detalleventa` (`id_detalleventa`, `cantidad`, `precioVenta`, `id_venta`, `id_producto`) VALUES
-(1, 1, 75000, 1, 2);
+INSERT INTO `detalleventa` (`id_detalleventa`, `cantidad`, `precioVenta`, `id_venta`, `id_producto`, `estado`) VALUES
+(1, 1, 75000, 1, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -156,15 +157,16 @@ INSERT INTO `proveedor` (`id_proveedor`, `razonSocial`, `domicilio`, `telefono`)
 CREATE TABLE `venta` (
   `id_venta` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `id_cliente` int(11) NOT NULL
+  `id_cliente` int(11) NOT NULL,
+  `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `venta`
 --
 
-INSERT INTO `venta` (`id_venta`, `fecha`, `id_cliente`) VALUES
-(1, '2023-05-31', 1);
+INSERT INTO `venta` (`id_venta`, `fecha`, `id_cliente`, `estado`) VALUES
+(1, '2023-05-31', 1, 1);
 
 --
 -- Índices para tablas volcadas
