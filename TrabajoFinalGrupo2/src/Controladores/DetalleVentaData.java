@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,7 +23,7 @@ public class DetalleVentaData {
     }
 
     public void agregarDetalleVenta(Detalle_Venta detalleV) {
-        String sql = "INSERT INTO detalleventa(cantidad, precioVenta, id_venta, id_producto) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO detalleventa(cantidad, precioVenta, id_venta, id_producto, estado) VALUES (?,?,?,?,?)";
         ProductoData pd = new ProductoData();
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -29,11 +31,12 @@ public class DetalleVentaData {
             ps.setFloat(2, detalleV.getPrecioVenta());
             ps.setInt(3, detalleV.getVenta().getIdVenta());
             ps.setInt(4, detalleV.getProducto().getIdProducto());
+            ps.setBoolean(5, detalleV.isEstado());            
             detalleV.getProducto().setStock(detalleV.getProducto().getStock() - detalleV.getCantidad());
             pd.editarProducto(detalleV.getProducto());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
+            if (rs.next()) { 
                 detalleV.setIdDetalleVenta(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Detalle Venta realizado correctamente");
             } else {
@@ -44,8 +47,27 @@ public class DetalleVentaData {
         }
     }
     
-    public void modificarDetalleVenta(){
-        String sql = "UPDATE detalleventa SET cantidad=?,precioVenta=?,id_venta=?,id_producto=? WHERE id_detalleventa=?";
+    public void modificarDetalleVenta(Detalle_Venta detalleV){
+        ProductoData pd = new ProductoData();
+        String sql = "UPDATE detalleventa SET cantidad=?,precioVenta=?,id_venta=?,id_producto=?, estado=? WHERE id_detalleventa=?";
+         
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, detalleV.getCantidad());
+            ps.setFloat(2, detalleV.getPrecioVenta());
+            ps.setInt(3, detalleV.getVenta().getIdVenta());
+            ps.setInt(4, detalleV.getProducto().getIdProducto());
+            ps.setBoolean(5, detalleV.isEstado());
+            ps.setInt(6, detalleV.getIdDetalleVenta());
+            detalleV.getProducto().setStock(detalleV.getProducto().getStock() - detalleV.getCantidad());
+            pd.editarProducto(detalleV.getProducto());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "El Detalle Venta se modifico correctamente");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo Modificar el Detalle Venta" + ex);
+        }
+          
+        
     }
 
     public void eliminarDetalleVenta(Detalle_Venta detalleV) {
@@ -114,5 +136,7 @@ public class DetalleVentaData {
         }
         return detalleVtas;
     }
+    
+    
 
 }

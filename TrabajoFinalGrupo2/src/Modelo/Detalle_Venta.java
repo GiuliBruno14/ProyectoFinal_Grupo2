@@ -12,6 +12,7 @@ public class Detalle_Venta {
     private float precioVenta;
     private Venta venta;
     private Producto producto;
+    private boolean estado=true;
 
     public Detalle_Venta(int cantidad, float precioVenta,Producto producto) {
         this.cantidad = cantidad;
@@ -40,6 +41,14 @@ public class Detalle_Venta {
 
     public int getCantidad() {
         return cantidad;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public void setCantidad(int cantidad) {
@@ -72,7 +81,7 @@ public class Detalle_Venta {
 
     @Override
     public String toString() {
-        return "Detalle_Venta{" + "idDetalleVenta=" + idDetalleVenta + ", cantidad=" + cantidad + ", precioVenta=" + precioVenta + ", venta=" + venta + ", producto=" + producto + '}';
+        return "Detalle_Venta{" + "idDetalleVenta=" + idDetalleVenta + ", cantidad=" + cantidad + ", precioVenta=" + precioVenta + ", venta=" + venta + ", producto=" + producto + ", estado= "+ estado +'}';
     }
     
 }

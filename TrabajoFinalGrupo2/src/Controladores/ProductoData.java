@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -49,6 +51,10 @@ public class ProductoData {
             ps.setInt(3, producto.getStock());
             ps.setBoolean(4, producto.isEstado());
             ps.setInt(5, producto.getIdProducto());
+            if (producto.getStock()==0){
+            producto.setEstado(false);
+               
+            }
             ps.executeUpdate();
             ps.close();
             JOptionPane.showMessageDialog(null, "Producto actualizado correctamente");
