@@ -12,7 +12,7 @@ public class Venta {
     private int idVenta;
     private LocalDate fecha;
     private Cliente cliente;
-
+    
     public Venta(int idVenta, LocalDate fecha, Cliente cliente) {
         this.idVenta = idVenta;
         this.fecha = fecha;

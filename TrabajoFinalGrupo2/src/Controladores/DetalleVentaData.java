@@ -43,6 +43,10 @@ public class DetalleVentaData {
             JOptionPane.showMessageDialog(null, "No se pudo realizar el Detalle Venta" + ex);
         }
     }
+    
+    public void modificarDetalleVenta(){
+        String sql = "UPDATE detalleventa SET cantidad=?,precioVenta=?,id_venta=?,id_producto=? WHERE id_detalleventa=?";
+    }
 
     public void eliminarDetalleVenta(Detalle_Venta detalleV) {
         String sql = "DELETE FROM detalleventa WHERE id_detalleventa =?";

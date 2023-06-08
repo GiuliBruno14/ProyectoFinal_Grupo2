@@ -51,11 +51,13 @@ public class VentaData {
 
     public void modificarVenta(Venta venta) {
         String sql = "UPDATE venta SET fecha=?,id_cliente=? WHERE id_venta=?;";
+        DetalleVentaData dvd = new DetalleVentaData();
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, Date.valueOf(venta.getFecha()));
             ps.setInt(2, venta.getCliente().getIdCliente());
             ps.setInt(3, venta.getIdVenta());
+            
             ps.executeUpdate();
             ps.close();
             JOptionPane.showMessageDialog(null, "Venta modificada correctamente");

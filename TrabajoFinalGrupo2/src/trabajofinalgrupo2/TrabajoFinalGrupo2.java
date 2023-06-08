@@ -49,9 +49,9 @@ public class TrabajoFinalGrupo2 {
         Compra com1 = new Compra(p1, LocalDate.of(2023, 6, 6));
         CompraData comd = new CompraData();
 //    comd.realizarCompra(com1);
-//        Compra com2 =new Compra(1,p1,LocalDate.of(2023, 4, 12));
-//        comd.editarCompra(com2);
-//    no funciona!!
+       Proveedor proved = pd.buscarProveedor(1);
+        Compra com2 =new Compra(1,proved,LocalDate.of(2023, 4, 12));
+ //      comd.editarCompra(com2);
 //        System.out.println(pd.buscarProveedor(1));
 //        System.out.println(comd.buscarCompra(1));
 //        System.out.println(vd.buscarVenta(1));
@@ -82,9 +82,9 @@ public class TrabajoFinalGrupo2 {
 //        }
         DetalleVentaData dvd = new DetalleVentaData();
         Venta ven = new Venta();
-        ven = vd.buscarVenta(1);
+ //      ven = vd.buscarVenta(1);
         Producto produ = new Producto();
-        produ = prodData.buscarProducto(1);
+ //     produ = prodData.buscarProducto(1);
         Detalle_Venta dv = new Detalle_Venta(1,80000,produ);
 //       dvd.agregarDetalleVenta(dv);
         //dvd.eliminarDetalleVenta(dv);
@@ -95,7 +95,7 @@ public class TrabajoFinalGrupo2 {
 //           System.out.println(v);
 //       }
         Venta ventnueva = new Venta(LocalDate.of(2023, 6, 7), cl2);
-        vd.realizarVenta(ventnueva, dv);
+       // vd.realizarVenta(ventnueva, dv);
         
 }
 }
