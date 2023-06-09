@@ -2,17 +2,20 @@ package trabajofinalgrupo2;
 
 import Controladores.ClientesData;
 import Controladores.CompraData;
+import Controladores.DetalleCompraData;
 import Controladores.DetalleVentaData;
 import Controladores.ProductoData;
 import Controladores.ProveedorData;
 import Controladores.VentaData;
 import Modelo.Cliente;
 import Modelo.Compra;
+import Modelo.DetalleCompra;
 import Modelo.Detalle_Venta;
 import Modelo.Producto;
 import Modelo.Proveedor;
 import Modelo.Venta;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 
 /**
@@ -84,7 +87,7 @@ public class TrabajoFinalGrupo2 {
         Venta ven = new Venta();
  //      ven = vd.buscarVenta(1);
         Producto produ = new Producto();
- //     produ = prodData.buscarProducto(1);
+      produ = prodData.buscarProducto(1);
         Detalle_Venta dv = new Detalle_Venta(1,80000,produ);
 //       dvd.agregarDetalleVenta(dv);
         //dvd.eliminarDetalleVenta(dv);
@@ -95,7 +98,29 @@ public class TrabajoFinalGrupo2 {
 //           System.out.println(v);
 //       }
         Venta ventnueva = new Venta(LocalDate.of(2023, 6, 7), cl2);
-       // vd.realizarVenta(ventnueva, dv);
+        ventnueva=vd.buscarVenta(1);
+       // ventnueva.setFecha(LocalDate.of(2023,6,9));
+       // vd.modificarVenta(ventnueva);
+       
+        dv=dvd.buscarDetalleVenta(1);
+        
+//        vd.eliminarVenta(ventnueva, dv);
+// vd.realizarVenta(ventnueva, dv);
+        CompraData compD=new CompraData();
+        
+        DetalleCompraData dcd=new DetalleCompraData();
+        System.out.println(prodData.buscarPorNombre("Heladera"));
+//        System.out.println(dcd.buscarDetalleCompra(1));
+//        ArrayList <DetalleCompra> detalleComp =new ArrayList<>();
+//        detalleComp =dcd.listarDetalleCompras();
+//       for(DetalleCompra c: detalleComp){
+//           System.out.println(c);
+//       }
+              
+                
+//        Compra compra2 = new Compra(proved,LocalDate.of(2023,6, 8));
+//        DetalleCompra dc1= new DetalleCompra(2,2000,compra2,produ);
+//        compD.realizarCompra(compra2, dc1);
         
 }
 }

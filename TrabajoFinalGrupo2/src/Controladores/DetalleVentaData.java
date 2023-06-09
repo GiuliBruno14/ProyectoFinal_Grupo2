@@ -71,10 +71,12 @@ public class DetalleVentaData {
     }
 
     public void eliminarDetalleVenta(Detalle_Venta detalleV) {
-        String sql = "DELETE FROM detalleventa WHERE id_detalleventa =?";
+        String sql = "UPDATE detalleventa SET estado=? WHERE id_detalleventa =?";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, detalleV.getIdDetalleVenta());
+            detalleV.setEstado(false);
+            ps.setBoolean(1, detalleV.isEstado());
+            ps.setInt(2, detalleV.getIdDetalleVenta());            
             ps.executeUpdate();
             ps.close();
             JOptionPane.showMessageDialog(null, "Detalle Venta eliminado correctamente");
@@ -100,6 +102,8 @@ public class DetalleVentaData {
                 detalleV.setPrecioVenta(rs.getFloat("precioVenta"));
                 detalleV.setVenta(vd.buscarVenta(rs.getInt("id_venta")));
                 detalleV.setProducto(pd.buscarProducto(rs.getInt("id_producto")));
+                detalleV.setEstado(rs.getBoolean("estado"));
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Detalle Venta inexistente");
             }
@@ -125,6 +129,7 @@ public class DetalleVentaData {
                 detalleV.setPrecioVenta(rs.getFloat("precioVenta"));
                 detalleV.setVenta(vd.buscarVenta(rs.getInt("id_venta")));
                 detalleV.setProducto(pd.buscarProducto(rs.getInt("id_producto")));
+                detalleV.setEstado(rs.getBoolean("estado"));
                 detalleVtas.add(detalleV);
             }
             ps.close();

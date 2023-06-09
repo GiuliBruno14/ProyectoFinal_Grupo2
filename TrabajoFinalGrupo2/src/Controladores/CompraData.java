@@ -4,6 +4,7 @@
 package Controladores;
 
 import Modelo.Compra;
+import Modelo.DetalleCompra;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -24,16 +25,20 @@ public class CompraData {
 
     }
 
-    public void realizarCompra(Compra compra) {
+    public void realizarCompra(Compra compra, DetalleCompra detalleC) {
         String sql = "INSERT INTO compra(id_proveedor, fecha) VALUES (?,?)";
+        DetalleCompraData dcd=new DetalleCompraData();
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, compra.getProveedor().getIdProveedor());
             ps.setDate(2, Date.valueOf(compra.getFecha()));
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
+            if (rs.next()) {                
                 compra.setIdCompra(rs.getInt(1));
+                
+                detalleC.setCompra(compra);
+                dcd.agregarDetalleCompra(detalleC);
                 JOptionPane.showMessageDialog(null, "Compra realizada correctamente");
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo realizar la compra");
@@ -43,36 +48,7 @@ public class CompraData {
         }
     }
 
-    public void editarCompra(Compra compra) {
-        String sql = "UPDATE compra SET id_proveedor=?,fecha=? WHERE id_compra=?;";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, compra.getProveedor().getIdProveedor());
-            ps.setDate(2, Date.valueOf(compra.getFecha()));
-            ps.setInt(3, compra.getIdCompra());
-            ps.executeUpdate();
-            ps.close();
-            JOptionPane.showMessageDialog(null, "Compra modificada correctamente");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo modificar la compra" + ex);
-        }
-
-    }
-
-    public void eliminarCompra(Compra compra) {
-        String sql = "DELETE FROM compra WHERE id_compra=?";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, compra.getIdCompra());
-            ps.executeUpdate();
-            ps.close();
-            JOptionPane.showMessageDialog(null, "Compra eliminada correctamente");
-        } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar la compra" + ex);
-        }
-
-    }
+//    
 
     public Compra buscarCompra(int id) {
         Compra compra = null;

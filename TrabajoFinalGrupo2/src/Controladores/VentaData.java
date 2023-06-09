@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -22,13 +24,15 @@ public class VentaData {
     }
 
     public void realizarVenta(Venta venta, Detalle_Venta detalleV) {
-        String sql = "INSERT INTO venta(fecha, id_cliente) VALUES (?,?);";
+        String sql = "INSERT INTO venta(fecha, id_cliente, estado) VALUES (?,?,?);";
         DetalleVentaData dvd = new DetalleVentaData();
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             if (detalleV.getCantidad() <= detalleV.getProducto().getStock()) {
                 ps.setDate(1, Date.valueOf(venta.getFecha()));
                 ps.setInt(2, venta.getCliente().getIdCliente());
+                ps.setBoolean(3, venta.isEstado());
+                
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
@@ -50,14 +54,14 @@ public class VentaData {
     }
 
     public void modificarVenta(Venta venta) {
-        String sql = "UPDATE venta SET fecha=?,id_cliente=? WHERE id_venta=?;";
+        String sql = "UPDATE venta SET fecha=?,id_cliente=?, estado=? WHERE id_venta=?;";
         DetalleVentaData dvd = new DetalleVentaData();
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, Date.valueOf(venta.getFecha()));
             ps.setInt(2, venta.getCliente().getIdCliente());
-            ps.setInt(3, venta.getIdVenta());
-            
+            ps.setBoolean(3, venta.isEstado());
+            ps.setInt(4, venta.getIdVenta());            
             ps.executeUpdate();
             ps.close();
             JOptionPane.showMessageDialog(null, "Venta modificada correctamente");
@@ -67,11 +71,14 @@ public class VentaData {
     }
 
     public void eliminarVenta(Venta venta,Detalle_Venta detalleV) {
-        String sql = "DELETE FROM venta WHERE id_venta=?;";
+        String sql = "UPDATE venta SET estado=? WHERE id_venta=?;";
         DetalleVentaData dvd = new DetalleVentaData();
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, venta.getIdVenta());
+            venta.setEstado(false);
+            ps.setBoolean(1, venta.isEstado());
+            
+            ps.setInt(2, venta.getIdVenta());
             detalleV.setVenta(venta);
             dvd.eliminarDetalleVenta(detalleV);
             ps.executeUpdate();
@@ -95,6 +102,9 @@ public class VentaData {
                 venta.setIdVenta(id);
                 venta.setCliente(cd.buscarCliente(rs.getInt("id_cliente")));
                 venta.setFecha(rs.getDate("fecha").toLocalDate());
+                venta.setEstado(rs.getBoolean("estado"));
+                
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Venta inexistente");
             }
@@ -117,6 +127,8 @@ public class VentaData {
                 venta.setIdVenta(rs.getInt("id_venta"));
                 venta.setCliente(cd.buscarCliente(rs.getInt("id_cliente")));
                 venta.setFecha(rs.getDate("fecha").toLocalDate());
+                venta.setEstado(rs.getBoolean("estado"));
+                
                 ventas.add(venta);
             }
             ps.close();

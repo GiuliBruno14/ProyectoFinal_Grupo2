@@ -25,18 +25,18 @@ public class Venta {
         estado=true;
     }
 
-    public boolean isEstado() {
+   
+    public Venta(LocalDate fecha, Cliente cliente) {
+        this.fecha = fecha;
+        this.cliente = cliente;
+        estado=true;
+    }
+ public boolean isEstado() {
         return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
-
-    public Venta(LocalDate fecha, Cliente cliente) {
-        this.fecha = fecha;
-        this.cliente = cliente;
-        estado=true;
     }
 
     public int getIdVenta() {
