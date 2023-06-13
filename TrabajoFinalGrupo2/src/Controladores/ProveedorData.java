@@ -83,7 +83,7 @@ public class ProveedorData {
                 proveedor.setIdProveedor(id);
                 proveedor.setRazonSocial(rs.getString("razonSocial"));
                 proveedor.setDomicilio(rs.getString("domicilio"));
-                proveedor.setTelefono(Integer.toString(rs.getInt("telefono")));
+                proveedor.setTelefono(Long.toString(rs.getLong("telefono")));
             } else {
                 JOptionPane.showMessageDialog(null, "Proveedor inexistente");
             }

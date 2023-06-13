@@ -63,18 +63,18 @@ public class ClientesData {
         }
     }
 
-    public void eliminarCliente(Cliente cliente) {
-        String sql = "DELETE FROM cliente WHERE id_cliente=?;";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, cliente.getIdCliente());
-            ps.executeUpdate();
-            ps.close();
-            JOptionPane.showMessageDialog(null, "Cliente eliminado correctamente");
-        } catch (SQLException ex) {
-            Logger.getLogger(ClientesData.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void eliminarCliente(Cliente cliente) {
+//        String sql = "DELETE FROM cliente WHERE id_cliente=?;";
+//        try {
+//            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+//            ps.setInt(1, cliente.getIdCliente());
+//            ps.executeUpdate();
+//            ps.close();
+//            JOptionPane.showMessageDialog(null, "Cliente eliminado correctamente");
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ClientesData.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public Cliente buscarCliente(int id) {
         Cliente cliente = null;
