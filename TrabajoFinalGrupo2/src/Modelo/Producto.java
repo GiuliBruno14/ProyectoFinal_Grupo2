@@ -10,25 +10,23 @@ public class Producto {
     private int idProducto;
     private String descripcion;
     private float precioActual;
-    private int stock = 0;
+    private int stock;
     private boolean estado;
 
-    public Producto(String descripcion, float precioActual, int stock, boolean estado) {
+    public Producto(String descripcion, float precioActual, int stock) {
         this.descripcion = descripcion;
         this.precioActual = precioActual;
         this.stock = stock;
-        this.estado = estado;
     }
 
     public Producto() {
     }
 
-    public Producto(int idProducto, String descripcion, float precioActual, int stock, boolean estado) {
+    public Producto(int idProducto, String descripcion, float precioActual, int stock) {
         this.idProducto = idProducto;
         this.descripcion = descripcion;
         this.precioActual = precioActual;
         this.stock = stock;
-        this.estado = estado;
     }
 
     public int getIdProducto() {

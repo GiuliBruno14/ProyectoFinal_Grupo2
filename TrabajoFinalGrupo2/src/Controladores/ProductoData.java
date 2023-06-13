@@ -28,6 +28,11 @@ public class ProductoData {
             ps.setString(1, producto.getDescripcion());
             ps.setFloat(2, producto.getPrecioActual());
             ps.setInt(3, producto.getStock());
+            if (producto.getStock()==0){
+            producto.setEstado(false);
+            } else {
+                producto.setEstado(true);
+            }
             ps.setBoolean(4, producto.isEstado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -49,12 +54,13 @@ public class ProductoData {
             ps.setString(1, producto.getDescripcion());
             ps.setFloat(2, producto.getPrecioActual());
             ps.setInt(3, producto.getStock());
-            ps.setBoolean(4, producto.isEstado());
-            ps.setInt(5, producto.getIdProducto());
             if (producto.getStock()==0){
             producto.setEstado(false);
-               
+            } else {
+                producto.setEstado(true);
             }
+            ps.setBoolean(4, producto.isEstado());
+            ps.setInt(5, producto.getIdProducto());
             ps.executeUpdate();
             ps.close();
             JOptionPane.showMessageDialog(null, "Producto actualizado correctamente");
@@ -63,18 +69,18 @@ public class ProductoData {
         }
     }
 
-    public void eliminarProducto(Producto producto) {
-        String sql = "DELETE FROM producto WHERE id_producto=?;";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, producto.getIdProducto());
-            ps.executeUpdate();
-            ps.close();
-            JOptionPane.showMessageDialog(null, "Producto eliminado correctamente");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto");
-        }
-    }  
+//    public void eliminarProducto(Producto producto) {
+//        String sql = "DELETE FROM producto WHERE id_producto=?;";
+//        try {
+//            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+//            ps.setInt(1, producto.getIdProducto());
+//            ps.executeUpdate();
+//            ps.close();
+//            JOptionPane.showMessageDialog(null, "Producto eliminado correctamente");
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto");
+//        }
+//    }  // Proxima version....
 
     public Producto buscarProducto(int id) {
         Producto producto = null;

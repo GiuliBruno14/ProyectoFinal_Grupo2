@@ -37,8 +37,8 @@ public class TrabajoFinalGrupo2 {
 //   pd.agregarProveedor(p1);
 //   pd.editarProveedor(p2); 
 //   pd.eliminarProveedor(p2);
-        Producto prod1 = new Producto("Microondas", 50000, 2, true);
-        Producto prod2 = new Producto(3, "Microondas", 70000, 2, true);
+        Producto prod1 = new Producto("Microondas", 50000, 2);
+        Producto prod2 = new Producto(3, "Microondas", 70000, 2);
         ProductoData prodData = new ProductoData();
 //    prodData.agregarProducto(prod1);
 //  prodData.editarProducto(prod2);
