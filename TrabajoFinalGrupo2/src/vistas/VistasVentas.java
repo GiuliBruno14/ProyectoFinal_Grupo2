@@ -26,14 +26,13 @@ import javax.swing.JOptionPane;
 public class VistasVentas extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modeloTabla;
-    private DefaultTableModel modeloTabla2;
     private ArrayList<Venta> ventas = new ArrayList();
     private ArrayList<Cliente> clientes = new ArrayList();
     private ArrayList<Producto> productos = new ArrayList();
     private ArrayList<Detalle_Venta> detalleventas = new ArrayList();
-    ClientesData clientD = new ClientesData();
-    ProductoData prodData = new ProductoData();
-    DetalleVentaData dvd = new DetalleVentaData();
+    private ClientesData clientD = new ClientesData();
+    private ProductoData prodData = new ProductoData();
+    private DetalleVentaData dvd = new DetalleVentaData();
     private VentaData ventaD = new VentaData();
     private int id;
 
@@ -49,6 +48,8 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         llenarTabla();
         llenarComboBoxClientes();
         llenarComboBoxProductos();
+        jCBoxClientes.setSelectedItem(null);
+        jCBoxProducto.setSelectedItem(null);
     }
 
     private void llenarComboBoxClientes() {
@@ -82,7 +83,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         borrarFilas();
         detalleventas = dvd.listarDetalleVentas();
         for (Detalle_Venta v : detalleventas) {
-            modeloTabla.addRow(new Object[]{v.getIdDetalleVenta(), Date.valueOf(v.getVenta().getFecha()), v.getVenta().getCliente().getIdCliente(),v.getProducto().getIdProducto(),v.getPrecioVenta(),v.getCantidad(), v.isEstado()});
+            modeloTabla.addRow(new Object[]{v.getIdDetalleVenta(), Date.valueOf(v.getVenta().getFecha()), v.getVenta().getCliente().getIdCliente(), v.getProducto().getIdProducto(), v.getPrecioVenta(), v.getCantidad(), v.isEstado()});
         }
     }
 
@@ -92,6 +93,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
             modeloTabla.removeRow(i);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,7 +104,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        btnGuardarC = new javax.swing.JLabel();
+        btnGuardar = new javax.swing.JLabel();
         jIdVenta = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
@@ -122,16 +124,17 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         jCBoxClientes = new javax.swing.JComboBox<>();
         jCBoxProducto = new javax.swing.JComboBox<>();
         btnEliminar = new javax.swing.JLabel();
+        btnLimpiar = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(820, 440));
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel3.setText("Ventas");
 
-        btnGuardarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/guardarico.png"))); // NOI18N
-        btnGuardarC.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/guardarico.png"))); // NOI18N
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnGuardarCMouseClicked(evt);
+                btnGuardarMouseClicked(evt);
             }
         });
 
@@ -217,6 +220,13 @@ public class VistasVentas extends javax.swing.JInternalFrame {
             }
         });
 
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLimpiarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -248,7 +258,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                         .addComponent(jRadioEstadoV, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -257,7 +267,10 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                                 .addGap(14, 14, 14))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnGuardarC)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnLimpiar)
+                                        .addGap(341, 341, 341)
+                                        .addComponent(btnGuardar))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(23, 23, 23))))))
             .addGroup(layout.createSequentialGroup()
@@ -312,8 +325,10 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnGuardarC)
-                            .addComponent(btnEliminar))))
+                            .addComponent(btnGuardar)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnEliminar)
+                                .addComponent(btnLimpiar)))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -324,7 +339,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioEstadoVActionPerformed
 
-    private void btnGuardarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCMouseClicked
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         // TODO add your handling code here:
         try {
             java.util.Date fecha = jDCFecha.getDate();
@@ -342,7 +357,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
         }
 
-    }//GEN-LAST:event_btnGuardarCMouseClicked
+    }//GEN-LAST:event_btnGuardarMouseClicked
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
@@ -367,11 +382,11 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                 Cliente c = (Cliente) jCBoxClientes.getSelectedItem();
                 java.util.Date fecha = jDCFecha.getDate();
                 LocalDate fecVent = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                Venta vent = new Venta(id,fecVent, c);
+                Venta vent = new Venta(id, fecVent, c);
                 Producto p = (Producto) jCBoxProducto.getSelectedItem();
                 float precio = Float.parseFloat(jPrecio1.getText());
                 int cant = Integer.parseInt(jCantidad.getText());
-                Detalle_Venta detaV = new Detalle_Venta(id,cant, precio,vent, p);
+                Detalle_Venta detaV = new Detalle_Venta(id, cant, precio, vent, p);
                 ventaD.modificarVenta(vent, detaV);
                 limpiar();
                 llenarTabla();
@@ -389,9 +404,9 @@ public class VistasVentas extends javax.swing.JInternalFrame {
             id = Integer.parseInt(jIdVenta.getText());
             Detalle_Venta dv = dvd.buscarDetalleVenta(id);
             venta1 = ventaD.buscarVenta(id);
-            jCBoxClientes.setSelectedItem(venta1.getCliente());
+            jCBoxClientes.setSelectedItem(venta1.getCliente());//No funciona
             jDCFecha.setDate(Date.valueOf(venta1.getFecha()));
-            jCBoxClientes.setSelectedItem(dv.getProducto());
+            jCBoxProducto.setSelectedItem(dv.getProducto());//No funciona
             jPrecio1.setText(Float.toString(dv.getPrecioVenta()));
             jCantidad.setText(Integer.toString(dv.getCantidad()));
             if (venta1.isEstado()) {
@@ -414,11 +429,11 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                 Cliente c = (Cliente) jCBoxClientes.getSelectedItem();
                 java.util.Date fecha = jDCFecha.getDate();
                 LocalDate fecVent = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                Venta vent = new Venta(id,fecVent, c);
+                Venta vent = new Venta(id, fecVent, c);
                 Producto p = (Producto) jCBoxProducto.getSelectedItem();
                 float precio = Float.parseFloat(jPrecio1.getText());
                 int cant = Integer.parseInt(jCantidad.getText());
-                Detalle_Venta detaV = new Detalle_Venta(id,cant, precio,vent, p);
+                Detalle_Venta detaV = new Detalle_Venta(id, cant, precio, vent, p);
                 ventaD.eliminarVenta(vent, detaV);
                 limpiar();
                 llenarTabla();
@@ -427,18 +442,27 @@ public class VistasVentas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
         }
     }//GEN-LAST:event_btnEliminarMouseClicked
+
+    private void btnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseClicked
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarMouseClicked
     private void limpiar() {
         jIdVenta.setText("");
         jDCFecha.setDate(null);
         jPrecio1.setText("");
         jCantidad.setText("");
+        jCBoxClientes.setSelectedItem(null);
+        jCBoxProducto.setSelectedItem(null);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBuscarC;
     private javax.swing.JLabel btnEditar;
     private javax.swing.JLabel btnEliminar;
-    private javax.swing.JLabel btnGuardarC;
+    private javax.swing.JLabel btnGuardar;
+    private javax.swing.JLabel btnLimpiar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<Cliente> jCBoxClientes;
     private javax.swing.JComboBox<Producto> jCBoxProducto;
