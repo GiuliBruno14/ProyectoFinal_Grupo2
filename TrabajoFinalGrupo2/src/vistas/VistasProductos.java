@@ -87,7 +87,7 @@ public class VistasProductos extends javax.swing.JInternalFrame {
         jRadioEstadoP = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(0, 0, 204));
-        setPreferredSize(new java.awt.Dimension(780, 440));
+        setPreferredSize(new java.awt.Dimension(820, 440));
 
         jLabel9.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel9.setText("Productos");

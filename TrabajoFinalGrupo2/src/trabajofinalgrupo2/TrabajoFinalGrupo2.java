@@ -92,11 +92,11 @@ public class TrabajoFinalGrupo2 {
 //       dvd.agregarDetalleVenta(dv);
         //dvd.eliminarDetalleVenta(dv);
       //  System.out.println(dvd.buscarDetalleVenta(1));
-//        ArrayList <Detalle_Venta> detalleVtas =new ArrayList<>();
-//        detalleVtas =dvd.listarDetalleVentas();
-//        for(Detalle_Venta v: detalleVtas){
-//           System.out.println(v);
-//       }
+        ArrayList <Detalle_Venta> detalleVtas =new ArrayList<>();
+        detalleVtas = dvd.listarDetalleVentas();
+        for(Detalle_Venta v: detalleVtas){
+           System.out.println(v);
+       }
         Venta ventnueva = new Venta(LocalDate.of(2023, 6, 7), cl2);
         ventnueva=vd.buscarVenta(1);
        // ventnueva.setFecha(LocalDate.of(2023,6,9));
@@ -121,6 +121,6 @@ public class TrabajoFinalGrupo2 {
 //        Compra compra2 = new Compra(proved,LocalDate.of(2023,6, 8));
 //        DetalleCompra dc1= new DetalleCompra(2,2000,compra2,produ);
 //        compD.realizarCompra(compra2, dc1);
-        
+       
 }
 }

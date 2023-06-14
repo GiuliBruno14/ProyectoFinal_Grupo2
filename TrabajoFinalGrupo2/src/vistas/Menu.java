@@ -142,7 +142,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(325, Short.MAX_VALUE)
+                .addContainerGap(365, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(240, 240, 240))
         );
@@ -154,7 +154,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 800, 70));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 840, 70));
 
         btnVentas1.setBackground(new java.awt.Color(0, 102, 153));
         btnVentas1.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
@@ -171,14 +171,14 @@ public class Menu extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGap(0, 820, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 440, Short.MAX_VALUE)
         );
 
-        getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 780, 440));
+        getContentPane().add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 820, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

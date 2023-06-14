@@ -45,7 +45,7 @@ public class VentaData {
                     JOptionPane.showMessageDialog(null, "No se pudo realizar la venta");
                 }
             } else {
-                System.out.println("No hay suficiente stock para realizar la venta");
+                JOptionPane.showMessageDialog(null,"No hay suficiente stock para realizar la venta");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -53,7 +53,7 @@ public class VentaData {
         }
     }
 
-    public void modificarVenta(Venta venta) {
+    public void modificarVenta(Venta venta, Detalle_Venta detalleV) {
         String sql = "UPDATE venta SET fecha=?,id_cliente=?, estado=? WHERE id_venta=?;";
         DetalleVentaData dvd = new DetalleVentaData();
         try {
@@ -61,7 +61,8 @@ public class VentaData {
             ps.setDate(1, Date.valueOf(venta.getFecha()));
             ps.setInt(2, venta.getCliente().getIdCliente());
             ps.setBoolean(3, venta.isEstado());
-            ps.setInt(4, venta.getIdVenta());            
+            ps.setInt(4, venta.getIdVenta());  
+            dvd.modificarDetalleVenta(detalleV);
             ps.executeUpdate();
             ps.close();
             JOptionPane.showMessageDialog(null, "Venta modificada correctamente");
@@ -128,7 +129,6 @@ public class VentaData {
                 venta.setCliente(cd.buscarCliente(rs.getInt("id_cliente")));
                 venta.setFecha(rs.getDate("fecha").toLocalDate());
                 venta.setEstado(rs.getBoolean("estado"));
-                
                 ventas.add(venta);
             }
             ps.close();

@@ -4,19 +4,94 @@
  */
 package vistas;
 
+import Controladores.ClientesData;
+import Controladores.DetalleVentaData;
+import Controladores.ProductoData;
+import Controladores.VentaData;
+import Modelo.Cliente;
+import Modelo.Detalle_Venta;
+import Modelo.Producto;
+import javax.swing.table.DefaultTableModel;
+import Modelo.Venta;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author giuli
  */
 public class VistasVentas extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modeloTabla;
+    private DefaultTableModel modeloTabla2;
+    private ArrayList<Venta> ventas = new ArrayList();
+    private ArrayList<Cliente> clientes = new ArrayList();
+    private ArrayList<Producto> productos = new ArrayList();
+    private ArrayList<Detalle_Venta> detalleventas = new ArrayList();
+    ClientesData clientD = new ClientesData();
+    ProductoData prodData = new ProductoData();
+    DetalleVentaData dvd = new DetalleVentaData();
+    private VentaData ventaD = new VentaData();
+    private int id;
+
     /**
      * Creates new form VistasVenta
      */
     public VistasVentas() {
         initComponents();
+        clientes = clientD.listarClientes();
+        productos = prodData.listarProductos();
+        modeloTabla = new DefaultTableModel();
+        encabezado();
+        llenarTabla();
+        llenarComboBoxClientes();
+        llenarComboBoxProductos();
     }
 
+    private void llenarComboBoxClientes() {
+        for (Cliente c : clientes) {
+            jCBoxClientes.addItem(c);
+        }
+    }
+
+    private void llenarComboBoxProductos() {
+        for (Producto p : productos) {
+            jCBoxProducto.addItem(p);
+        }
+    }
+
+    private void encabezado() {
+        ArrayList<Object> columna = new ArrayList();
+        columna.add("Código");
+        columna.add("Fecha");
+        columna.add("Cliente");
+        columna.add("Producto");
+        columna.add("Precio");
+        columna.add("Cantidad");
+        columna.add("Estado");
+        for (Object c : columna) {
+            modeloTabla.addColumn(c);
+        }
+        jTablaVentas.setModel(modeloTabla);
+    }
+
+    private void llenarTabla() {
+        borrarFilas();
+        detalleventas = dvd.listarDetalleVentas();
+        for (Detalle_Venta v : detalleventas) {
+            modeloTabla.addRow(new Object[]{v.getIdDetalleVenta(), Date.valueOf(v.getVenta().getFecha()), v.getVenta().getCliente().getIdCliente(),v.getProducto().getIdProducto(),v.getPrecioVenta(),v.getCantidad(), v.isEstado()});
+        }
+    }
+
+    private void borrarFilas() {
+        int fila = modeloTabla.getRowCount() - 1;
+        for (int i = fila; i >= 0; i--) {
+            modeloTabla.removeRow(i);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,8 +106,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         jIdVenta = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
-        btnCrearC = new javax.swing.JLabel();
-        jIdCliente = new javax.swing.JTextField();
+        btnEditar = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnBuscarC = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -40,26 +114,54 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jDCFecha = new com.toedter.calendar.JDateChooser();
         jRadioEstadoV = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jCantidad = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jPrecio1 = new javax.swing.JTextField();
+        jCBoxClientes = new javax.swing.JComboBox<>();
+        jCBoxProducto = new javax.swing.JComboBox<>();
+        btnEliminar = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(780, 440));
+        setPreferredSize(new java.awt.Dimension(820, 440));
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel3.setText("Ventas");
 
         btnGuardarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/guardarico.png"))); // NOI18N
+        btnGuardarC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarCMouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel6.setText("ID Venta:");
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
-        btnCrearC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/icocrear.png"))); // NOI18N
-        btnCrearC.setToolTipText("");
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/icocrear.png"))); // NOI18N
+        btnEditar.setToolTipText("");
+        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarMouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel4.setText("ID Cliente:");
 
         btnBuscarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/buscarico.png"))); // NOI18N
+        btnBuscarC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarCMouseClicked(evt);
+            }
+        });
 
         jTablaVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,9 +182,38 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         jRadioEstadoV.setBackground(new java.awt.Color(255, 255, 255));
         jRadioEstadoV.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jRadioEstadoV.setText("Estado");
+        jRadioEstadoV.setEnabled(false);
         jRadioEstadoV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioEstadoVActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        jLabel7.setText("ID Producto:");
+
+        jLabel8.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        jLabel8.setText("Precio:");
+
+        jLabel9.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        jLabel9.setText("Cantidad:");
+
+        jCBoxClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxClientesActionPerformed(evt);
+            }
+        });
+
+        jCBoxProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxProductoActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEliminarMouseClicked(evt);
             }
         });
 
@@ -91,79 +222,99 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel5))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPrecio1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                        .addComponent(jDCFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                        .addComponent(jCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBuscarC, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCBoxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCBoxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnBuscarC)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jRadioEstadoV, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(95, 95, 95))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(90, 90, 90)
-                                        .addComponent(btnCrearC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(57, 57, 57)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel5))))
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 80, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jRadioEstadoV, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(249, 249, 249)
-                                .addComponent(btnSalir))
-                            .addComponent(btnGuardarC))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                                .addGap(211, 211, 211)
+                                .addComponent(btnSalir)
+                                .addGap(14, 14, 14))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnGuardarC)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(23, 23, 23))))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
+                .addComponent(btnEliminar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(btnSalir))
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(btnSalir))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBuscarC)
-                                .addGap(102, 102, 102))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(35, 35, 35)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(46, 46, 46)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(jIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnBuscarC))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jCBoxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jDCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42)
-                        .addComponent(jRadioEstadoV)))
-                .addGap(44, 44, 44)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jCBoxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioEstadoV))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGuardarC, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCrearC, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnGuardarC)
+                            .addComponent(btnEliminar))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,19 +324,135 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioEstadoVActionPerformed
 
+    private void btnGuardarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarCMouseClicked
+        // TODO add your handling code here:
+        try {
+            java.util.Date fecha = jDCFecha.getDate();
+            LocalDate fecVent = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            Cliente c = (Cliente) jCBoxClientes.getSelectedItem();
+            Venta vent = new Venta(fecVent, c);
+            Producto p = (Producto) jCBoxProducto.getSelectedItem();
+            float precio = Float.parseFloat(jPrecio1.getText());
+            int cant = Integer.parseInt(jCantidad.getText());
+            Detalle_Venta detaV = new Detalle_Venta(cant, precio, p);
+            ventaD.realizarVenta(vent, detaV);
+            limpiar();
+            llenarTabla();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
+        }
+
+    }//GEN-LAST:event_btnGuardarCMouseClicked
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void jCBoxClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxClientesActionPerformed
+
+    }//GEN-LAST:event_jCBoxClientesActionPerformed
+
+    private void jCBoxProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxProductoActionPerformed
+
+    }//GEN-LAST:event_jCBoxProductoActionPerformed
+
+    private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
+        // TODO add your handling code here:
+        try {
+            if (Integer.parseInt(jIdVenta.getText()) != id) {
+                JOptionPane.showMessageDialog(null, "Error al modificar venta: No se puede cambiar el ID");
+            } else {
+                int id = Integer.parseInt(jIdVenta.getText());
+                Cliente c = (Cliente) jCBoxClientes.getSelectedItem();
+                java.util.Date fecha = jDCFecha.getDate();
+                LocalDate fecVent = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                Venta vent = new Venta(id,fecVent, c);
+                Producto p = (Producto) jCBoxProducto.getSelectedItem();
+                float precio = Float.parseFloat(jPrecio1.getText());
+                int cant = Integer.parseInt(jCantidad.getText());
+                Detalle_Venta detaV = new Detalle_Venta(id,cant, precio,vent, p);
+                ventaD.modificarVenta(vent, detaV);
+                limpiar();
+                llenarTabla();
+            }
+            llenarTabla();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
+        }
+    }//GEN-LAST:event_btnEditarMouseClicked
+
+    private void btnBuscarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarCMouseClicked
+        // TODO add your handling code here:
+        try {
+            Venta venta1 = new Venta();
+            id = Integer.parseInt(jIdVenta.getText());
+            Detalle_Venta dv = dvd.buscarDetalleVenta(id);
+            venta1 = ventaD.buscarVenta(id);
+            jCBoxClientes.setSelectedItem(venta1.getCliente());
+            jDCFecha.setDate(Date.valueOf(venta1.getFecha()));
+            jCBoxClientes.setSelectedItem(dv.getProducto());
+            jPrecio1.setText(Float.toString(dv.getPrecioVenta()));
+            jCantidad.setText(Integer.toString(dv.getCantidad()));
+            if (venta1.isEstado()) {
+                jRadioEstadoV.setSelected(true);
+            } else {
+                jRadioEstadoV.setSelected(false);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
+        }
+    }//GEN-LAST:event_btnBuscarCMouseClicked
+
+    private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
+        // TODO add your handling code here:
+        try {
+            if (Integer.parseInt(jIdVenta.getText()) != id) {
+                JOptionPane.showMessageDialog(null, "Error");
+            } else {
+                int id = Integer.parseInt(jIdVenta.getText());
+                Cliente c = (Cliente) jCBoxClientes.getSelectedItem();
+                java.util.Date fecha = jDCFecha.getDate();
+                LocalDate fecVent = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                Venta vent = new Venta(id,fecVent, c);
+                Producto p = (Producto) jCBoxProducto.getSelectedItem();
+                float precio = Float.parseFloat(jPrecio1.getText());
+                int cant = Integer.parseInt(jCantidad.getText());
+                Detalle_Venta detaV = new Detalle_Venta(id,cant, precio,vent, p);
+                ventaD.eliminarVenta(vent, detaV);
+                limpiar();
+                llenarTabla();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
+        }
+    }//GEN-LAST:event_btnEliminarMouseClicked
+    private void limpiar() {
+        jIdVenta.setText("");
+        jDCFecha.setDate(null);
+        jPrecio1.setText("");
+        jCantidad.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBuscarC;
-    private javax.swing.JLabel btnCrearC;
+    private javax.swing.JLabel btnEditar;
+    private javax.swing.JLabel btnEliminar;
     private javax.swing.JLabel btnGuardarC;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<Cliente> jCBoxClientes;
+    private javax.swing.JComboBox<Producto> jCBoxProducto;
+    private javax.swing.JTextField jCantidad;
     private com.toedter.calendar.JDateChooser jDCFecha;
-    private javax.swing.JTextField jIdCliente;
     private javax.swing.JTextField jIdVenta;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jPrecio1;
     private javax.swing.JRadioButton jRadioEstadoV;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablaVentas;

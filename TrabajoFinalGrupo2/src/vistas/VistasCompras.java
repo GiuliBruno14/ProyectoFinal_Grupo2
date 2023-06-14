@@ -41,7 +41,7 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         jIdProveedor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(780, 440));
+        setPreferredSize(new java.awt.Dimension(820, 440));
 
         btnBuscarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/buscarico.png"))); // NOI18N
 
@@ -118,7 +118,7 @@ public class VistasCompras extends javax.swing.JInternalFrame {
                         .addComponent(btnBuscarC)
                         .addGap(40, 40, 40)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(jLabel3)
@@ -126,7 +126,7 @@ public class VistasCompras extends javax.swing.JInternalFrame {
                         .addComponent(btnSalir)
                         .addGap(132, 132, 132))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 463, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnGuardarC)
                         .addGap(157, 157, 157))))
             .addGroup(layout.createSequentialGroup()

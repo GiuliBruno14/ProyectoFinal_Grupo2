@@ -84,7 +84,7 @@ public class VistasProveedores extends javax.swing.JInternalFrame {
         jRazonSocial = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 51, 255));
-        setPreferredSize(new java.awt.Dimension(780, 440));
+        setPreferredSize(new java.awt.Dimension(820, 440));
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel3.setText("Proveedores");
@@ -178,12 +178,9 @@ public class VistasProveedores extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(246, 246, 246)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnGuardarC)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnSalir)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnGuardarC)
+                            .addComponent(btnSalir))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
