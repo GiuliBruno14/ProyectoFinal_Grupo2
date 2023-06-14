@@ -83,6 +83,9 @@ public class VistasProveedores extends javax.swing.JInternalFrame {
         btnSalir = new javax.swing.JButton();
         jRazonSocial = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(0, 51, 255));
+        setPreferredSize(new java.awt.Dimension(780, 440));
+
         jLabel3.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel3.setText("Proveedores");
 

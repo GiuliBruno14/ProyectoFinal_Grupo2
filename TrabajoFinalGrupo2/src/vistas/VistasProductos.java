@@ -77,7 +77,6 @@ public class VistasProductos extends javax.swing.JInternalFrame {
         jStock = new javax.swing.JTextField();
         jSalir = new javax.swing.JButton();
         btnGuardar = new javax.swing.JLabel();
-        jRadioEstadoP = new javax.swing.JRadioButton();
         jDescripcion = new javax.swing.JTextField();
         jPrecioActual = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -85,8 +84,10 @@ public class VistasProductos extends javax.swing.JInternalFrame {
         btnEditarP = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JLabel();
         btnBuscar2 = new javax.swing.JLabel();
+        jRadioEstadoP = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(0, 0, 204));
+        setPreferredSize(new java.awt.Dimension(780, 440));
 
         jLabel9.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel9.setText("Productos");
@@ -132,9 +133,6 @@ public class VistasProductos extends javax.swing.JInternalFrame {
                 btnGuardarMouseClicked(evt);
             }
         });
-
-        jRadioEstadoP.setText("Estado");
-        jRadioEstadoP.setEnabled(false);
 
         jDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -183,6 +181,15 @@ public class VistasProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        jRadioEstadoP.setBackground(new java.awt.Color(255, 255, 255));
+        jRadioEstadoP.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        jRadioEstadoP.setText("Estado");
+        jRadioEstadoP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioEstadoPActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -211,10 +218,8 @@ public class VistasProductos extends javax.swing.JInternalFrame {
                             .addComponent(jPrecioActual, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jStock, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnEditarP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioEstadoP))))
+                        .addGap(94, 94, 94)
+                        .addComponent(btnEditarP, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,6 +243,10 @@ public class VistasProductos extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnGuardar)
                                 .addGap(69, 69, 69))))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(jRadioEstadoP, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,9 +284,9 @@ public class VistasProductos extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
+                .addGap(33, 33, 33)
                 .addComponent(jRadioEstadoP)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardar)
                     .addComponent(btnEditarP))
@@ -388,6 +397,10 @@ public class VistasProductos extends javax.swing.JInternalFrame {
     private void jDescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDescripcionKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jDescripcionKeyPressed
+
+    private void jRadioEstadoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioEstadoPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioEstadoPActionPerformed
     private void limpiar() {
         jIdProducto.setText("");
         jDescripcion.setText("");

@@ -212,6 +212,11 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompraActionPerformed
         // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        VistasCompras vc = new VistasCompras();
+        vc.setVisible(true);
+        escritorio.add(vc);
     }//GEN-LAST:event_btnCompraActionPerformed
 
     private void btnVentas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentas1ActionPerformed
@@ -220,6 +225,11 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
         // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        VistasVentas vv = new VistasVentas();
+        vv.setVisible(true);
+        escritorio.add(vv);
     }//GEN-LAST:event_btnVentasActionPerformed
 
     /**

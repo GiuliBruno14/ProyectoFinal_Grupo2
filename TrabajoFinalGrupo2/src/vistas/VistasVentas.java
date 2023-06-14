@@ -35,12 +35,13 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         jIdCliente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnBuscarC = new javax.swing.JLabel();
-        btnEliminarC = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaVentas = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jDCFecha = new com.toedter.calendar.JDateChooser();
         jRadioEstadoV = new javax.swing.JRadioButton();
+
+        setPreferredSize(new java.awt.Dimension(780, 440));
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel3.setText("Ventas");
@@ -59,8 +60,6 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         jLabel4.setText("ID Cliente:");
 
         btnBuscarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/buscarico.png"))); // NOI18N
-
-        btnEliminarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/eliminarico.png"))); // NOI18N
 
         jTablaVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,18 +114,12 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                                             .addComponent(jLabel4)
                                             .addComponent(jLabel6)
                                             .addComponent(jLabel5))))
+                                .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jDCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 80, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(btnEliminarC)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(jIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 80, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -169,8 +162,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardarC, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCrearC, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEliminarC, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCrearC, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -185,7 +177,6 @@ public class VistasVentas extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBuscarC;
     private javax.swing.JLabel btnCrearC;
-    private javax.swing.JLabel btnEliminarC;
     private javax.swing.JLabel btnGuardarC;
     private javax.swing.JButton btnSalir;
     private com.toedter.calendar.JDateChooser jDCFecha;

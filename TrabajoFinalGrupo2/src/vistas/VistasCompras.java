@@ -28,7 +28,6 @@ public class VistasCompras extends javax.swing.JInternalFrame {
 
         btnBuscarC = new javax.swing.JLabel();
         jDCFecha = new com.toedter.calendar.JDateChooser();
-        btnEliminarC = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jRadioEstadoV = new javax.swing.JRadioButton();
         btnGuardarC = new javax.swing.JLabel();
@@ -42,9 +41,9 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         jIdProveedor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
-        btnBuscarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/buscarico.png"))); // NOI18N
+        setPreferredSize(new java.awt.Dimension(780, 440));
 
-        btnEliminarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/eliminarico.png"))); // NOI18N
+        btnBuscarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/buscarico.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel3.setText("Compras");
@@ -108,14 +107,13 @@ public class VistasCompras extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jDCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(jIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jIdCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jIdCompra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDCFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(30, 30, 30)
                         .addComponent(btnBuscarC)
                         .addGap(40, 40, 40)
@@ -128,9 +126,7 @@ public class VistasCompras extends javax.swing.JInternalFrame {
                         .addComponent(btnSalir)
                         .addGap(132, 132, 132))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(btnEliminarC)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(69, 463, Short.MAX_VALUE)
                         .addComponent(btnGuardarC)
                         .addGap(157, 157, 157))))
             .addGroup(layout.createSequentialGroup()
@@ -141,9 +137,9 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(btnSalir))
@@ -167,7 +163,6 @@ public class VistasCompras extends javax.swing.JInternalFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCrearC, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEliminarC, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardarC))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
@@ -183,7 +178,6 @@ public class VistasCompras extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBuscarC;
     private javax.swing.JLabel btnCrearC;
-    private javax.swing.JLabel btnEliminarC;
     private javax.swing.JLabel btnGuardarC;
     private javax.swing.JButton btnSalir;
     private com.toedter.calendar.JDateChooser jDCFecha;
