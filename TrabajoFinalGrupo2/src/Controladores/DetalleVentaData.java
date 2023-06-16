@@ -104,9 +104,7 @@ public class DetalleVentaData {
                 detalleV.setProducto(pd.buscarProducto(rs.getInt("id_producto")));
                 detalleV.setEstado(rs.getBoolean("estado"));
                 
-            } else {
-                JOptionPane.showMessageDialog(null, "Detalle Venta inexistente");
-            }
+            } 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo buscar el detalle venta" + ex);
         }

@@ -47,6 +47,16 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         llenarComboBoxProductos();
         jCBoxProveedores.setSelectedItem(null);
         jCBoxProducto.setSelectedItem(null);
+        habilitarBuscar();
+    }
+    private void habilitarBuscar(){
+    if(jIdCompra.getText().length()==0){
+        btnBuscarC.setEnabled(false);
+    }
+    else{
+        btnBuscarC.setEnabled(true);
+        }
+    
     }
     private void llenarComboBoxClientes() {
         for (Proveedor p: proveedores) {
@@ -148,6 +158,12 @@ public class VistasCompras extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTablaCompras);
+
+        jIdCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jIdCompraKeyReleased(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel6.setText("ID Compra:");
@@ -314,6 +330,7 @@ public class VistasCompras extends javax.swing.JInternalFrame {
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         // TODO add your handling code here:
         try {
+            
             java.util.Date fecha = jDCFecha.getDate();
             LocalDate fecComp = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             Proveedor prov = (Proveedor) jCBoxProveedores.getSelectedItem();
@@ -333,15 +350,17 @@ public class VistasCompras extends javax.swing.JInternalFrame {
     private void btnBuscarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarCMouseClicked
         // TODO add your handling code here:
         try {
+            if(btnBuscarC.isEnabled()){
             Compra compra1 = new Compra();
             id = Integer.parseInt(jIdCompra.getText());
             DetalleCompra dc = dcd.buscarDetalleCompra(id);
             compra1 = compraD.buscarCompra(id);
-            jCBoxProveedores.setSelectedItem(compra1.getProveedor());//No funciona
+            jCBoxProveedores.setSelectedIndex(compra1.getProveedor().getIdProveedor()-1);//No funciona
             jDCFecha.setDate(Date.valueOf(compra1.getFecha()));
-            jCBoxProducto.setSelectedItem(dc.getProducto());//No funciona
+            jCBoxProducto.setSelectedIndex(dc.getProducto().getIdProducto()-1);//No funciona
             jPrecio.setText(Float.toString(dc.getPrecioCosto()));
             jCantidad.setText(Integer.toString(dc.getCantidad()));
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
         }
@@ -351,6 +370,10 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         limpiar();
     }//GEN-LAST:event_btnLimpiarMouseClicked
+
+    private void jIdCompraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdCompraKeyReleased
+      habilitarBuscar();  // TODO add your handling code here:
+    }//GEN-LAST:event_jIdCompraKeyReleased
     public void limpiar(){
         jIdCompra.setText("");
         jDCFecha.setDate(null);
@@ -358,6 +381,7 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         jCantidad.setText("");
         jCBoxProveedores.setSelectedItem(null);
         jCBoxProducto.setSelectedItem(null);
+        habilitarBuscar();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

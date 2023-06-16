@@ -29,8 +29,18 @@ public class VistasProveedores extends javax.swing.JInternalFrame {
         modeloTabla = new DefaultTableModel();
         encabezado();
         llenarTabla();
+        habilitarBuscar();
     }
 
+    private void habilitarBuscar(){
+    if(jIdProveedor.getText().length()==0){
+        btnBuscarC.setEnabled(false);
+    }
+    else{
+        btnBuscarC.setEnabled(true);
+        }
+    
+    }
     private void encabezado() {
         ArrayList<Object> columna = new ArrayList();
         columna.add("Código");
@@ -135,6 +145,12 @@ public class VistasProveedores extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTablaProveedores);
+
+        jIdProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jIdProveedorKeyReleased(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -261,12 +277,14 @@ public class VistasProveedores extends javax.swing.JInternalFrame {
     private void btnBuscarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarCMouseClicked
         // TODO add your handling code here:
         try {
+            if(btnBuscarC.isEnabled()){
             Proveedor proveedor1 = new Proveedor();
             id = Integer.parseInt(jIdProveedor.getText());
             proveedor1 = provData.buscarProveedor(id);
             jRazonSocial.setText(proveedor1.getRazonSocial());
             jDireccion.setText(proveedor1.getDomicilio());
             jTelefono.setText(proveedor1.getTelefono());
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
         }
@@ -293,11 +311,16 @@ public class VistasProveedores extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
         }
     }//GEN-LAST:event_btnEditarMouseClicked
+
+    private void jIdProveedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdProveedorKeyReleased
+        habilitarBuscar();        // TODO add your handling code here:
+    }//GEN-LAST:event_jIdProveedorKeyReleased
     private void limpiar() {
         jIdProveedor.setText("");
         jRazonSocial.setText("");
         jDireccion.setText("");
         jTelefono.setText("");
+        habilitarBuscar();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

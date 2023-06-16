@@ -247,6 +247,9 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="jIdProveedor">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jIdProveedorKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>

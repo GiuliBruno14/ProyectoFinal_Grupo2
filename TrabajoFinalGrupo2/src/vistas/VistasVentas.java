@@ -50,8 +50,17 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         llenarComboBoxProductos();
         jCBoxClientes.setSelectedItem(null);
         jCBoxProducto.setSelectedItem(null);
+        habilitarBuscar();
+                
     }
-
+    private void habilitarBuscar(){
+    if(jIdVenta.getText().length()==0){
+        btnBuscarC.setEnabled(false);
+    }
+    else{
+        btnBuscarC.setEnabled(true);
+        }
+    }
     private void llenarComboBoxClientes() {
         for (Cliente c : clientes) {
             jCBoxClientes.addItem(c);
@@ -135,6 +144,23 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnGuardarMouseClicked(evt);
+            }
+        });
+
+        jIdVenta.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jIdVentaComponentAdded(evt);
+            }
+        });
+        jIdVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jIdVentaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jIdVentaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jIdVentaKeyTyped(evt);
             }
         });
 
@@ -400,13 +426,14 @@ public class VistasVentas extends javax.swing.JInternalFrame {
     private void btnBuscarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarCMouseClicked
         // TODO add your handling code here:
         try {
+           if(btnBuscarC.isEnabled()){ 
             Venta venta1 = new Venta();
             id = Integer.parseInt(jIdVenta.getText());
             Detalle_Venta dv = dvd.buscarDetalleVenta(id);
             venta1 = ventaD.buscarVenta(id);
-            jCBoxClientes.setSelectedItem(venta1.getCliente());//No funciona
+            jCBoxClientes.setSelectedIndex(venta1.getCliente().getIdCliente()-1);//No funciona
             jDCFecha.setDate(Date.valueOf(venta1.getFecha()));
-            jCBoxProducto.setSelectedItem(dv.getProducto());//No funciona
+            jCBoxProducto.setSelectedIndex(dv.getProducto().getIdProducto()-1);//No funciona
             jPrecio1.setText(Float.toString(dv.getPrecioVenta()));
             jCantidad.setText(Integer.toString(dv.getCantidad()));
             if (venta1.isEstado()) {
@@ -414,6 +441,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
             } else {
                 jRadioEstadoV.setSelected(false);
             }
+           }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
         }
@@ -447,6 +475,22 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         limpiar();
     }//GEN-LAST:event_btnLimpiarMouseClicked
+
+    private void jIdVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdVentaKeyPressed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_jIdVentaKeyPressed
+
+    private void jIdVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdVentaKeyTyped
+       // TODO add your handling code here:
+    }//GEN-LAST:event_jIdVentaKeyTyped
+
+    private void jIdVentaComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jIdVentaComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jIdVentaComponentAdded
+
+    private void jIdVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdVentaKeyReleased
+       habilitarBuscar(); // TODO add your handling code here:
+    }//GEN-LAST:event_jIdVentaKeyReleased
     private void limpiar() {
         jIdVenta.setText("");
         jDCFecha.setDate(null);
@@ -454,6 +498,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         jCantidad.setText("");
         jCBoxClientes.setSelectedItem(null);
         jCBoxProducto.setSelectedItem(null);
+        habilitarBuscar();
         
     }
 

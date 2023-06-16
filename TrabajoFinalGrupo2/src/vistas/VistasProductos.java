@@ -29,8 +29,24 @@ public class VistasProductos extends javax.swing.JInternalFrame {
         modeloTabla = new DefaultTableModel();
         encabezado();
         llenarTabla();
+        habilitarBuscar();
     }
 
+    private void habilitarBuscar(){
+    if(jIdProducto.getText().length()==0){
+        btnBuscar.setEnabled(false);
+        
+    }
+    else{
+        btnBuscar.setEnabled(true);
+        }
+    if(jDescripcion.getText().length()==0){
+        btnBuscar2.setEnabled(false);
+    }
+    else{
+        btnBuscar2.setEnabled(true);
+        }
+    }
     private void encabezado() {
         ArrayList<Object> columna = new ArrayList();
         columna.add("Código");
@@ -109,6 +125,9 @@ public class VistasProductos extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jIdProductoKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jIdProductoKeyReleased(evt);
+            }
         });
 
         jLabel14.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
@@ -137,6 +156,9 @@ public class VistasProductos extends javax.swing.JInternalFrame {
         jDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jDescripcionKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jDescripcionKeyReleased(evt);
             }
         });
 
@@ -184,6 +206,7 @@ public class VistasProductos extends javax.swing.JInternalFrame {
         jRadioEstadoP.setBackground(new java.awt.Color(255, 255, 255));
         jRadioEstadoP.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jRadioEstadoP.setText("Estado");
+        jRadioEstadoP.setEnabled(false);
         jRadioEstadoP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioEstadoPActionPerformed(evt);
@@ -345,6 +368,7 @@ public class VistasProductos extends javax.swing.JInternalFrame {
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         // TODO add your handling code here:
         try {
+            if(btnBuscar.isEnabled()){
             Producto producto1 = new Producto();
             id = Integer.parseInt(jIdProducto.getText());
             producto1 = prodData.buscarProducto(id);
@@ -356,6 +380,7 @@ public class VistasProductos extends javax.swing.JInternalFrame {
             } else {
                 jRadioEstadoP.setSelected(false);
             }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
         }
@@ -365,6 +390,7 @@ public class VistasProductos extends javax.swing.JInternalFrame {
     private void btnBuscar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscar2MouseClicked
         // TODO add your handling code here:
         try {
+            if(btnBuscar2.isEnabled()){
             Producto producto1 = new Producto();
             String descrip = jDescripcion.getText();
             producto1 = prodData.buscarPorNombre(descrip);
@@ -375,6 +401,7 @@ public class VistasProductos extends javax.swing.JInternalFrame {
                 jRadioEstadoP.setSelected(true);
             } else {
                 jRadioEstadoP.setSelected(false);
+            }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
@@ -401,12 +428,21 @@ public class VistasProductos extends javax.swing.JInternalFrame {
     private void jRadioEstadoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioEstadoPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioEstadoPActionPerformed
+
+    private void jIdProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdProductoKeyReleased
+        habilitarBuscar();        // TODO add your handling code here:
+    }//GEN-LAST:event_jIdProductoKeyReleased
+
+    private void jDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDescripcionKeyReleased
+        habilitarBuscar();        // TODO add your handling code here:
+    }//GEN-LAST:event_jDescripcionKeyReleased
     private void limpiar() {
         jIdProducto.setText("");
         jDescripcion.setText("");
         jPrecioActual.setText("");
         jStock.setText("");
         jRadioEstadoP.setSelected(false);
+        habilitarBuscar();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

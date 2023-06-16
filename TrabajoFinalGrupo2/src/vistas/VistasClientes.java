@@ -29,8 +29,17 @@ public class VistasClientes extends javax.swing.JInternalFrame {
         modeloTabla = new DefaultTableModel();
         encabezado();
         llenarTabla();
+        habilitarBuscar();
     }
 
+    private void habilitarBuscar(){
+    if(jIdCliente.getText().length()==0){
+        btnBuscarC.setEnabled(false);
+    }
+    else{
+        btnBuscarC.setEnabled(true);
+        }
+    }
     private void encabezado() {
         ArrayList<Object> columna = new ArrayList();
         columna.add("Código");
@@ -106,6 +115,18 @@ public class VistasClientes extends javax.swing.JInternalFrame {
 
         jLabel8.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel8.setText("Telefono:");
+
+        jIdCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jIdClienteKeyReleased(evt);
+            }
+        });
+
+        jApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jApellidoActionPerformed(evt);
+            }
+        });
 
         btnGuardarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/guardarico.png"))); // NOI18N
         btnGuardarC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -246,7 +267,7 @@ public class VistasClientes extends javax.swing.JInternalFrame {
             String apellido1 = jApellido.getText();
             String domicilio1 = jDomicilio.getText();
             String telefono1 = jTelefono.getText();
-            Cliente c = new Cliente(nombre1, apellido1, domicilio1, telefono1);
+            Cliente c = new Cliente(apellido1, nombre1, domicilio1, telefono1);
             Long tel = Long.parseLong(telefono1);
             clientData.agregarCliente(c);
             limpiar();
@@ -259,6 +280,7 @@ public class VistasClientes extends javax.swing.JInternalFrame {
     private void btnBuscarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarCMouseClicked
         // TODO add your handling code here:
         try {
+            if(btnBuscarC.isEnabled()){
             Cliente cliente1 = new Cliente();
             id = Integer.parseInt(jIdCliente.getText());
             cliente1 = clientData.buscarCliente(id);
@@ -266,6 +288,7 @@ public class VistasClientes extends javax.swing.JInternalFrame {
             jApellido.setText(cliente1.getApellido());
             jDomicilio.setText(cliente1.getDomicilio());
             jTelefono.setText(cliente1.getTelefono());
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Datos incorrectos" + e);
         }
@@ -282,7 +305,7 @@ public class VistasClientes extends javax.swing.JInternalFrame {
                 String apellido1 = jApellido.getText();
                 String domicilio1 = jDomicilio.getText();
                 String telefono1 = jTelefono.getText();
-                Cliente c = new Cliente(id,nombre1, apellido1, domicilio1, telefono1);
+                Cliente c = new Cliente(id,apellido1, nombre1, domicilio1, telefono1);
                 Long tel = Long.parseLong(telefono1);
                 clientData.editarCliente(c);
                 limpiar();
@@ -294,12 +317,21 @@ public class VistasClientes extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_btnEditarMouseClicked
+
+    private void jApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jApellidoActionPerformed
+
+    private void jIdClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdClienteKeyReleased
+        habilitarBuscar();        // TODO add your handling code here:
+    }//GEN-LAST:event_jIdClienteKeyReleased
     private void limpiar() {
         jIdCliente.setText("");
         jNombre.setText("");
         jApellido.setText("");
         jDomicilio.setText("");
         jTelefono.setText("");
+        habilitarBuscar();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
