@@ -116,7 +116,6 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JLabel();
         jIdVenta = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
         btnEditar = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnBuscarC = new javax.swing.JLabel();
@@ -134,11 +133,14 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         jCBoxProducto = new javax.swing.JComboBox<>();
         btnEliminar = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JLabel();
+        btnSalir2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(820, 440));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel3.setText("Ventas");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 0, -1, -1));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/guardarico.png"))); // NOI18N
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -146,7 +148,11 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                 btnGuardarMouseClicked(evt);
             }
         });
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 344, -1, -1));
 
+        jIdVenta.setBackground(new java.awt.Color(0, 102, 153));
+        jIdVenta.setFont(new java.awt.Font("Agency FB", 0, 14)); // NOI18N
+        jIdVenta.setForeground(new java.awt.Color(255, 255, 255));
         jIdVenta.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 jIdVentaComponentAdded(evt);
@@ -163,16 +169,11 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                 jIdVentaKeyTyped(evt);
             }
         });
+        getContentPane().add(jIdVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 145, -1));
 
         jLabel6.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel6.setText("ID Venta:");
-
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 39, -1, -1));
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/icocrear.png"))); // NOI18N
         btnEditar.setToolTipText("");
@@ -181,9 +182,11 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                 btnEditarMouseClicked(evt);
             }
         });
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 343, 50, -1));
 
         jLabel4.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel4.setText("ID Cliente:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 76, -1, -1));
 
         btnBuscarC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/buscarico.png"))); // NOI18N
         btnBuscarC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,6 +194,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                 btnBuscarCMouseClicked(evt);
             }
         });
+        getContentPane().add(btnBuscarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 39, 40, -1));
 
         jTablaVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,8 +209,14 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTablaVentas);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(349, 50, 412, 242));
+
         jLabel5.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel5.setText("Fecha:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 121, -1, -1));
+
+        jDCFecha.setBackground(new java.awt.Color(0, 102, 153));
+        getContentPane().add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 121, 152, -1));
 
         jRadioEstadoV.setBackground(new java.awt.Color(255, 255, 255));
         jRadioEstadoV.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
@@ -217,146 +227,74 @@ public class VistasVentas extends javax.swing.JInternalFrame {
                 jRadioEstadoVActionPerformed(evt);
             }
         });
+        getContentPane().add(jRadioEstadoV, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 298, 133, -1));
 
         jLabel7.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel7.setText("ID Producto:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 171, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel8.setText("Precio:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 213, -1, -1));
+
+        jCantidad.setBackground(new java.awt.Color(0, 102, 153));
+        jCantidad.setFont(new java.awt.Font("Agency FB", 0, 14)); // NOI18N
+        jCantidad.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 264, 160, -1));
 
         jLabel9.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel9.setText("Cantidad:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 263, -1, -1));
 
+        jPrecio1.setBackground(new java.awt.Color(0, 102, 153));
+        jPrecio1.setFont(new java.awt.Font("Agency FB", 0, 14)); // NOI18N
+        jPrecio1.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jPrecio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 214, 160, -1));
+
+        jCBoxClientes.setBackground(new java.awt.Color(0, 102, 153));
+        jCBoxClientes.setFont(new java.awt.Font("Agency FB", 0, 14)); // NOI18N
+        jCBoxClientes.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBoxClientesActionPerformed(evt);
             }
         });
+        getContentPane().add(jCBoxClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 77, 152, -1));
 
+        jCBoxProducto.setBackground(new java.awt.Color(0, 102, 153));
+        jCBoxProducto.setFont(new java.awt.Font("Agency FB", 0, 14)); // NOI18N
+        jCBoxProducto.setForeground(new java.awt.Color(255, 255, 255));
         jCBoxProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBoxProductoActionPerformed(evt);
             }
         });
+        getContentPane().add(jCBoxProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 172, 160, -1));
 
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/eliminarico.png"))); // NOI18N
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEliminarMouseClicked(evt);
             }
         });
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 343, -1, -1));
 
-        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/limpiar.png"))); // NOI18N
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLimpiarMouseClicked(evt);
             }
         });
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 343, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel5))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPrecio1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                        .addComponent(jDCFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                        .addComponent(jCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBuscarC, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jCBoxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCBoxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jRadioEstadoV, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(211, 211, 211)
-                                .addComponent(btnSalir)
-                                .addGap(14, 14, 14))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnLimpiar)
-                                        .addGap(341, 341, 341)
-                                        .addComponent(btnGuardar))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(23, 23, 23))))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addComponent(btnEliminar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(btnSalir))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel6)
-                                .addComponent(jIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnBuscarC))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jCBoxClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jDCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jCBoxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jPrecio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioEstadoV))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEditar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnGuardar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnEliminar)
-                                .addComponent(btnLimpiar)))))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
+        btnSalir2.setBackground(new java.awt.Color(0, 102, 153));
+        btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/salir.png"))); // NOI18N
+        btnSalir2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -384,11 +322,6 @@ public class VistasVentas extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_btnGuardarMouseClicked
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void jCBoxClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxClientesActionPerformed
 
@@ -491,6 +424,10 @@ public class VistasVentas extends javax.swing.JInternalFrame {
     private void jIdVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdVentaKeyReleased
        habilitarBuscar(); // TODO add your handling code here:
     }//GEN-LAST:event_jIdVentaKeyReleased
+
+    private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
+       dispose();
+    }//GEN-LAST:event_btnSalir2ActionPerformed
     private void limpiar() {
         jIdVenta.setText("");
         jDCFecha.setDate(null);
@@ -508,7 +445,7 @@ public class VistasVentas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel btnEliminar;
     private javax.swing.JLabel btnGuardar;
     private javax.swing.JLabel btnLimpiar;
-    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSalir2;
     private javax.swing.JComboBox<Cliente> jCBoxClientes;
     private javax.swing.JComboBox<Producto> jCBoxProducto;
     private javax.swing.JTextField jCantidad;

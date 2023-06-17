@@ -116,7 +116,6 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         jIdCompra = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jCBoxProveedores = new javax.swing.JComboBox<>();
         jCBoxProducto = new javax.swing.JComboBox<>();
@@ -126,6 +125,7 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jCantidad = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JLabel();
+        btnSalir1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(820, 440));
 
@@ -135,6 +135,8 @@ public class VistasCompras extends javax.swing.JInternalFrame {
                 btnBuscarCMouseClicked(evt);
             }
         });
+
+        jDCFecha.setBackground(new java.awt.Color(0, 102, 153));
 
         jLabel3.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
         jLabel3.setText("Compras");
@@ -159,6 +161,9 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTablaCompras);
 
+        jIdCompra.setBackground(new java.awt.Color(0, 102, 153));
+        jIdCompra.setFont(new java.awt.Font("Agency FB", 0, 14)); // NOI18N
+        jIdCompra.setForeground(new java.awt.Color(255, 255, 255));
         jIdCompra.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jIdCompraKeyReleased(evt);
@@ -171,22 +176,18 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel5.setText("Fecha:");
 
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel4.setText("ID Proveedor:");
 
+        jCBoxProveedores.setBackground(new java.awt.Color(0, 102, 153));
         jCBoxProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBoxProveedoresActionPerformed(evt);
             }
         });
 
+        jCBoxProducto.setBackground(new java.awt.Color(0, 102, 153));
+        jCBoxProducto.setFont(new java.awt.Font("Agency FB", 0, 14)); // NOI18N
         jCBoxProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCBoxProductoActionPerformed(evt);
@@ -199,13 +200,29 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel8.setText("Precio:");
 
+        jPrecio.setBackground(new java.awt.Color(0, 102, 153));
+        jPrecio.setFont(new java.awt.Font("Agency FB", 0, 14)); // NOI18N
+        jPrecio.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabel9.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
         jLabel9.setText("Cantidad:");
 
-        btnLimpiar.setText("Limpiar");
+        jCantidad.setBackground(new java.awt.Color(0, 102, 153));
+        jCantidad.setFont(new java.awt.Font("Agency FB", 0, 14)); // NOI18N
+        jCantidad.setForeground(new java.awt.Color(255, 255, 255));
+
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/limpiar.png"))); // NOI18N
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLimpiarMouseClicked(evt);
+            }
+        });
+
+        btnSalir1.setBackground(new java.awt.Color(0, 102, 153));
+        btnSalir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconos/salir.png"))); // NOI18N
+        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir1ActionPerformed(evt);
             }
         });
 
@@ -214,18 +231,6 @@ public class VistasCompras extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(313, 313, 313)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addGap(68, 68, 68))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jIdCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
@@ -242,36 +247,45 @@ public class VistasCompras extends javax.swing.JInternalFrame {
                             .addComponent(jLabel8))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jCantidad)
-                        .addGap(117, 117, 117))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnGuardar)
+                                .addGap(85, 85, 85)
+                                .addComponent(btnLimpiar))
+                            .addComponent(jCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jCBoxProducto, 0, 160, Short.MAX_VALUE)
+                                .addComponent(jPrecio)
+                                .addComponent(jDCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jCBoxProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(btnBuscarC))
-                            .addComponent(jCBoxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBuscarC)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(btnLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardar)
-                .addGap(59, 59, 59))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jIdCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3))
-                    .addComponent(btnSalir))
+                .addContainerGap()
+                .addComponent(jLabel3)
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -295,20 +309,21 @@ public class VistasCompras extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGuardar))
-                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(jPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(btnLimpiar)))
-                .addGap(39, 39, 39))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardar)
+                            .addComponent(btnLimpiar))
+                        .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnSalir1)
+                        .addGap(39, 39, 39))))
         );
 
         pack();
@@ -321,11 +336,6 @@ public class VistasCompras extends javax.swing.JInternalFrame {
     private void jCBoxProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxProductoActionPerformed
 
     }//GEN-LAST:event_jCBoxProductoActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         // TODO add your handling code here:
@@ -374,6 +384,10 @@ public class VistasCompras extends javax.swing.JInternalFrame {
     private void jIdCompraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdCompraKeyReleased
       habilitarBuscar();  // TODO add your handling code here:
     }//GEN-LAST:event_jIdCompraKeyReleased
+
+    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalir1ActionPerformed
     public void limpiar(){
         jIdCompra.setText("");
         jDCFecha.setDate(null);
@@ -388,7 +402,7 @@ public class VistasCompras extends javax.swing.JInternalFrame {
     private javax.swing.JLabel btnBuscarC;
     private javax.swing.JLabel btnGuardar;
     private javax.swing.JLabel btnLimpiar;
-    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSalir1;
     private javax.swing.JComboBox<Producto> jCBoxProducto;
     private javax.swing.JComboBox<Proveedor> jCBoxProveedores;
     private javax.swing.JTextField jCantidad;

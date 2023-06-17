@@ -113,17 +113,17 @@ public class Menu extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(btnClientes)
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addComponent(btnProductos)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(btnProveedores)
-                .addGap(35, 35, 35)
+                .addGap(27, 27, 27)
                 .addComponent(btnVentas)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(btnCompra)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 510));
